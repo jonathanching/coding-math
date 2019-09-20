@@ -1,0 +1,125 @@
+/**
+ * ==================================================================================
+ * Main stylesheet
+ * ==================================================================================
+ */
+
+
+/**
+ * @Mixins
+ * ============================================================
+ */
+@mixin transition($property) {
+    -webkit-transition: $property;
+       -moz-transition: $property;
+        -ms-transition: $property;
+         -o-transition: $property;
+            transition: $property;
+}
+
+@mixin transform($property) {
+    -webkit-transform: $property;
+       -moz-transform: $property;
+        -ms-transform: $property;
+         -o-transform: $property;
+            transform: $property;
+}
+
+
+/**
+ * Colors
+ * ==================================================================================
+ */
+
+$font: #333;
+
+
+/**
+ * Typography
+ * ==================================================================================
+ */
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+    margin-bottom: 5px;
+    color: $font;
+}
+
+p, a, label {
+    font-size: .75em;
+    margin: 5px auto;
+    color: $font;
+}
+
+
+
+/**
+ * Styles
+ * ==================================================================================
+ */
+
+html, body {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    display: table;
+}
+
+#app {
+    position: relative;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+
+    .app__header {
+        position: absolute;
+        width: 100%;
+        top: 10px;
+        text-align: center;
+        z-index: 2;
+
+        .app__header__title {
+
+        }
+
+        .app__header__desc {
+
+        }
+    }
+
+    .app__buttons {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        z-index: 2;
+
+        .app__buttons__back {
+            display: block;
+            font-size: 14px;
+            text-decoration: none;
+            cursor: pointer;
+
+            @include transition(transform 0.3s ease);
+            @include transform(translateX(0%));
+        }
+
+        .app__buttons__back.router-link-exact-active {
+            @include transform(translateX(-200%));
+        }
+    }
+
+    .app__content {
+        width: 100%;
+        height: 100%;
+        margin: 20px auto;
+
+        > .section {
+            width: 100%;
+            height: 80%;
+        }
+    }
+}
