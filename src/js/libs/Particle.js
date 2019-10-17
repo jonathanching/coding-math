@@ -1,7 +1,7 @@
 /**
  * ==================================================================================
  * Particle class
- * 
+ *
  * ==================================================================================
  **/
 
@@ -29,7 +29,7 @@ export class Particle {
         this.velocity.setLength(speed);
         this.velocity.setAngle(direction);
     }
-    
+
 
     /**
      * ==================================================================================
@@ -70,7 +70,7 @@ export class Particle {
     /**
      * Add `spring` point object to collection
      * @param int point
-     * @param int k  
+     * @param int k
      * @param int length
      */
     addSpring(point, k, length) {
@@ -86,7 +86,7 @@ export class Particle {
     /**
      * Remove `spring` point object to collection
      * @param int point
-     */    
+     */
     removeSpring(point) {
         for(var i = 0; i < this.springs.length; i++) {
             if(point === this.springs[i].point)
@@ -97,13 +97,13 @@ export class Particle {
     /**
      * Adds in a `spring` force vector toward the `p2` element to the `velocity` vector
      * @param int point
-     * @param int k  
+     * @param int k
      * @param int length
      */
     springTo(point, k, length) {
         /**
          * Calculate `spring force` (`f = kx`)
-         * 
+         *
          * `f` = Force
          * `k` = Spring stiffness
          * `x` = Distance
@@ -145,7 +145,7 @@ export class Particle {
     /**
      * Remove `gravitation` object to collection
      * @param Particle gravitation
-     */    
+     */
     removeGravitation(gravitation) {
         for(var i = 0; i < this.gravitations.length; i++) {
             if(gravitation === this.gravitations[i])
@@ -165,11 +165,11 @@ export class Particle {
          * G = Gravitational constant (6.67 * 10^-11 N x m^2 / kg^2)
          * M = Mass of one object
          * m = Mass of other object
-         * r = distance between the two objects
+         * r = Distance between the two objects
          *
          * We can simplify this by disregarding the `G` value. As `G` is used to primarily normalize
          * or proportion the force/acceleration value and prevent it from being too large
-         * 
+         *
          * New simplified formula will be (f = Mm / r²)
          */
         let gravForce = new Vector2(0, 0),
@@ -232,5 +232,5 @@ export class Particle {
      * ==================================================================================
      **/
 
-    // 
+    //
 }

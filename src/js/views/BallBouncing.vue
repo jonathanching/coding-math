@@ -1,7 +1,7 @@
 <template>
 
     <div id="ball-bouncing">
-    
+
         <canvas id="canvas"></canvas>
 
     </div>
@@ -18,7 +18,7 @@
     import { Vector2 } from '../libs/Vector2.js';
     import { Particle } from '../libs/Particle.js';
     import Draw from '../mixins/Draw.js';
-    
+
 
     export default {
         props: {
@@ -90,7 +90,7 @@
 
 
                 /**
-                 * Adding of gravity to `ball`s current velocity. This increases the downward pulling 
+                 * Adding of gravity to `ball`s current velocity. This increases the downward pulling
                  * force overtime
                  *
                  * Adding of velocity to `ball`s current position
@@ -100,7 +100,7 @@
 
                 /* Draw the ball */
                 this.drawBall("black", this.ball.position.x, this.ball.position.y);
-                
+
 
                 /* Check wall collision for bouncing effect */
                 this.checkWallCollision();
@@ -108,7 +108,7 @@
 
                 /* Repeat render function */
                 requestAnimationFrame(this.animateBall);
-            },            
+            },
 
             /**
              * Draw a ball
@@ -181,9 +181,9 @@
                     this.ball.position.y = this.radius;
                     /* Reverse velocity`s `y` value to point to the top side */
                     this.ball.velocity.y = this.ball.velocity.y * this.ball.bounce;
-                    
+
                 }
             },
-        }        
+        }
     };
 </script>
