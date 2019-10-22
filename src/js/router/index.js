@@ -44,6 +44,10 @@ const MultiSpringPoint = () => import('../views/MultiSpringPoint.vue');
 const MultiGravitationalFields = () => import('../views/MultiGravitationalFields.vue');
 const BezierCurves = () => import('../views/BezierCurves.vue');
 const EasingTweening = () => import('../views/EasingTweening.vue');
+const CubeRotation3D = () => import('../views/CubeRotation3D.vue');
+const PolyCollisionDetection = () => import('../views/PolyCollisionDetection.vue');
+const SierpinskiTriangle = () => import('../views/SierpinskiTriangle.vue');
+const KochSnowflake = () => import('../views/KochSnowflake.vue');
 
 
 /**
@@ -61,7 +65,7 @@ export default new VueRouter({
     routes: [
         { path: '/', component: Home },
         { path: '*', redirect: { name: Home }},
-        
+
         {
             path: '/graph-of-trigonometric-functions', component: TrigFuncGraphs, name: 'TrigFuncGraphs',
             label: 'Graphs of Trigonometric Functions', desc: 'Graph/Wave of the Sine, Cosine & Tangent',
@@ -137,6 +141,22 @@ export default new VueRouter({
         {
             path: '/easing-and-tweening', component: EasingTweening, name: 'EasingTweening',
             label: 'Easing and Tweening', desc: 'Easing & Tweening in Animation',
+        },
+        {
+            path: '/3d-cube-rotation', component: CubeRotation3D, name: 'CubeRotation3D',
+            label: '3D Cube Rotation', desc: 'Rotating a Cube in 3D',
+        },
+        {
+            path: '/polygon-collision-detection', component: PolyCollisionDetection, name: 'PolyCollisionDetection',
+            label: 'Polygon Collision Detection', desc: 'Detecting polygon to polygon collision',
+        },
+        {
+            path: '/sierpinski-triangle', component: SierpinskiTriangle, name: 'SierpinskiTriangle',
+            label: 'Sierpinski Triangle', desc: 'Drawing the Sierpinski Triangle fractal',
+        },
+        {
+            path: '/koch-snowflake', component: KochSnowflake, name: 'KochSnowflake',
+            label: 'Koch Snowflake', desc: 'Drawing the Koch Snowflake fractal',
         },
     ]
 });

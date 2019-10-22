@@ -1,7 +1,7 @@
 <template>
 
     <div id="rectangle-collision">
-    
+
         <canvas id="canvas"></canvas>
 
     </div>
@@ -20,7 +20,7 @@
     import { Math2 } from '../libs/Math2.js';
     import Draw from '../mixins/Draw.js';
     import TrackMouse from '../mixins/TrackMouse.js';
-    
+
 
     export default {
         props: {
@@ -56,7 +56,7 @@
             mouseY: function() {
                 if(this.mouse && (this.mouse.position.y != this.mouseY))
                     this.mouse.position.y = this.mouseY;
-            },            
+            },
         },
 
         mounted: function() {
@@ -82,7 +82,7 @@
                 this.rectangleWidth = this.rectangleHeight * 2;
                 this.rectangle = new Particle(
                                 /**
-                                 * Position at the center of the screen, take into account that the origin 
+                                 * Position at the center of the screen, take into account that the origin
                                  * of `rect` is on the upper left side
                                  */
                                 this.canvasHalfWidth - (this.rectangleWidth / 2), this.canvasHalfHeight - (this.rectangleHeight / 2),
@@ -119,23 +119,23 @@
                 /* ...static rectangle */
                 this.drawRect(
                         this.rectangleColor,
-                        this.rectangle.position.x, this.rectangle.position.y, 
+                        this.rectangle.position.x, this.rectangle.position.y,
                         this.rectangleWidth, this.rectangleHeight
                     );
                 /* ...mouse rectangle */
                 this.drawRect(
                         this.mouseColor,
-                        this.mouse.position.x, this.mouse.position.y, 
+                        this.mouse.position.x, this.mouse.position.y,
                         this.mouseWidth, this.mouseHeight
                     );
 
 
                 /* Repeat render function */
                 requestAnimationFrame(this.animateRectangle);
-            },            
+            },
 
             /**
-             * Draw a ball
+             * Draw a rectangle
              */
             drawRect: function(color, x, y, width, height) {
                 this.context.fillStyle = color;
@@ -180,14 +180,14 @@
                  * &&
                  * - Either rect.'s `y` value is in between the other rect.'s `y` and `y` + `height` value
                  */
-                if( 
+                if(
                     Math2.rangeIntersect(
-                        this.rectangle.position.x, this.rectangle.position.x + this.rectangleWidth, 
-                        this.mouse.position.x, this.mouse.position.x + this.mouseWidth, 
+                        this.rectangle.position.x, this.rectangle.position.x + this.rectangleWidth,
+                        this.mouse.position.x, this.mouse.position.x + this.mouseWidth,
                     ) &&
                     Math2.rangeIntersect(
-                        this.rectangle.position.y, this.rectangle.position.y + this.rectangleHeight, 
-                        this.mouse.position.y, this.mouse.position.y + this.mouseHeight, 
+                        this.rectangle.position.y, this.rectangle.position.y + this.rectangleHeight,
+                        this.mouse.position.y, this.mouse.position.y + this.mouseHeight,
                     )
                 ) {
                     this.mouseColor = "rgba(255, 177, 177, 0.5)";
@@ -197,6 +197,6 @@
                     this.rectangleColor = "rgba(200, 200, 200, 0.5)";
                 }
             },
-        }        
+        }
     };
 </script>

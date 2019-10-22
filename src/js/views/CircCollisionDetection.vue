@@ -1,7 +1,7 @@
 <template>
 
     <div id="circle-collision">
-    
+
         <canvas id="canvas"></canvas>
 
     </div>
@@ -19,7 +19,7 @@
     import { Particle } from '../libs/Particle.js';
     import Draw from '../mixins/Draw.js';
     import TrackMouse from '../mixins/TrackMouse.js';
-    
+
 
     export default {
         props: {
@@ -55,7 +55,7 @@
             mouseY: function() {
                 if(this.mouse && (this.mouse.position.y != this.mouseY))
                     this.mouse.position.y = this.mouseY;
-            },            
+            },
         },
 
         mounted: function() {
@@ -111,27 +111,27 @@
 
                 /* Draw the circles... */
                 /* ...static circle */
-                this.drawBall(
+                this.drawCirc(
                         this.circleColor,
-                        this.circle.position.x, this.circle.position.y, 
+                        this.circle.position.x, this.circle.position.y,
                         this.circleRadius
                     );
                 /* ...mouse circle */
-                this.drawBall(
+                this.drawCirc(
                         this.mouseColor,
-                        this.mouseX, this.mouseY, 
+                        this.mouseX, this.mouseY,
                         this.mouseRadius
                     );
 
 
                 /* Repeat render function */
                 requestAnimationFrame(this.animateCircle);
-            },            
+            },
 
             /**
-             * Draw a ball
+             * Draw a circle
              */
-            drawBall: function(color, x, y, radius) {
+            drawCirc: function(color, x, y, radius) {
                 this.context.fillStyle = color;
 
                 this.context.beginPath();
@@ -181,6 +181,6 @@
                     this.circleColor = "rgba(200, 200, 200, 0.5)";
                 }
             },
-        }        
+        }
     };
 </script>

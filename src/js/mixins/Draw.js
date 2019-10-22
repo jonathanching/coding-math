@@ -51,6 +51,7 @@ export default {
          * @param integer spacing
          */
         drawGrid: function(color = "#f7f7f7", spacing = 20) {
+            this.context.save();
             this.context.beginPath();
 
             this.context.strokeStyle = color;
@@ -70,6 +71,7 @@ export default {
 
 
             this.context.stroke();
+            this.context.restore();
         },
 
         /**
@@ -80,6 +82,7 @@ export default {
                 left = this.canvas.width * -1, right = this.canvas.width, center = this.canvasHalfWidth,
                 middle = this.canvasHalfHeight, bottom = this.canvas.height;
 
+            this.context.save();
             this.context.beginPath();
 
             this.context.strokeStyle = color;
@@ -94,6 +97,7 @@ export default {
             this.context.lineTo(center - hThick, bottom);
 
             this.context.stroke();
+            this.context.restore();
         },
 
 
