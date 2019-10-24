@@ -48,6 +48,8 @@ const CubeRotation3D = () => import('../views/CubeRotation3D.vue');
 const PolyCollisionDetection = () => import('../views/PolyCollisionDetection.vue');
 const SierpinskiTriangle = () => import('../views/SierpinskiTriangle.vue');
 const KochSnowflake = () => import('../views/KochSnowflake.vue');
+const VerletIntegration = () => import('../views/VerletIntegration.vue');
+const FractalTree = () => import('../views/FractalTree.vue');
 
 
 /**
@@ -157,6 +159,14 @@ export default new VueRouter({
         {
             path: '/koch-snowflake', component: KochSnowflake, name: 'KochSnowflake',
             label: 'Koch Snowflake', desc: 'Drawing the Koch Snowflake fractal',
+        },
+        {
+            path: '/verlet-integration', component: VerletIntegration, name: 'VerletIntegration',
+            label: 'Verlet Integration', desc: 'Simulating a pendulum w/ Verlet Integration',
+        },
+        {
+            path: '/fractal-tree', component: FractalTree, name: 'FractalTree',
+            label: 'Fractal Tree', desc: 'Creating a Tree patterned Fractal',
         },
     ]
 });

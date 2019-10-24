@@ -1,7 +1,7 @@
 <template>
 
     <div id="pointing-object">
-    
+
         <canvas id="canvas"></canvas>
 
     </div>
@@ -17,7 +17,7 @@
 
     import Draw from '../mixins/Draw.js';
     import TrackMouse from '../mixins/TrackMouse.js';
-    
+
 
     export default {
         props: {
@@ -25,7 +25,7 @@
         },
 
         mixins: [
-            Draw, 
+            Draw,
             TrackMouse,
         ],
 
@@ -54,7 +54,7 @@
              * ==================================================================================
              * @Methods
              * ==================================================================================
-             **/           
+             **/
 
             /**
              * Animate arrow
@@ -97,7 +97,7 @@
 
                 /* Repeat render function */
                 requestAnimationFrame(this.animateArrow);
-            },         
+            },
 
             /**
              * Draw arrow
@@ -109,20 +109,12 @@
                 this.context.moveTo(20, 0);
                 this.context.lineTo(-20, 0);
                 this.context.moveTo(20, 0);
-                this.context.lineTo(10, -10);                
+                this.context.lineTo(10, -10);
                 this.context.moveTo(20, 0);
                 this.context.lineTo(10, 10);
                 this.context.stroke();
-            },        
-
-            /**
-             * Draw helpers
-             */
-            drawHelpers: function() {
-                this.drawGrid();
-                this.drawAxis("#f3f3f3");
             },
-            
+
 
             /**
              * ==================================================================================
@@ -140,6 +132,6 @@
              **/
 
             //
-        }        
+        }
     };
 </script>

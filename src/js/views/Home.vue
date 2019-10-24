@@ -1,7 +1,9 @@
 <template>
 
     <div id="home">
-    
+
+        <canvas id="canvas"></canvas>
+
         <div class="home__header">
             <h1 class="home__header__title">Coding Math</h1>
             <p class="home__header__content">
@@ -20,7 +22,7 @@
             </ul>
         </div>
 
-    </div>    
+    </div>
 
 </template>
 <script>
@@ -30,11 +32,18 @@
      * Home Page VUE component
      * ==================================================================================
      **/
-     
+
+    import Draw from '../mixins/Draw.js';
+
+
     export default {
         props: {
             //
         },
+
+        mixins: [
+            Draw,
+        ],
 
         computed: {
 
@@ -67,6 +76,7 @@
         methods: {
 
             init: function() {
+                /* Set initial values */
                 //
             },
 
@@ -75,7 +85,7 @@
              * ==================================================================================
              * @Methods
              * ==================================================================================
-             **/                 
+             **/
 
             //
 
@@ -96,6 +106,6 @@
              **/
 
             //
-        }        
+        }
     };
 </script>

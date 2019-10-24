@@ -1,9 +1,9 @@
 <template>
 
     <div id="spring-animation">
-    
+
         <canvas id="canvas"></canvas>
-    
+
     </div>
 
 </template>
@@ -18,7 +18,7 @@
     import { Vector2 } from '../libs/Vector2.js';
     import { Particle } from '../libs/Particle.js';
     import Draw from '../mixins/Draw.js';
-    
+
 
     export default {
         props: {
@@ -119,7 +119,7 @@
                 /**
                  * Adding of spring force to ball`s velocity
                  * Adding of velocity to ball`s current position
-                 */  
+                 */
                 this.ball.update();
 
 
@@ -145,7 +145,7 @@
 
                 /* Repeat render function */
                 requestAnimationFrame(this.animateCircle);
-            },            
+            },
 
             /**
              * Draw a ball
@@ -166,14 +166,6 @@
                 this.context.moveTo(x0, y0);
                 this.context.lineTo(x1, y1);
                 this.context.stroke();
-            },            
-
-            /**
-             * Draw helpers
-             */
-            drawHelpers: function() {
-                this.drawGrid();
-                this.drawAxis();
             },
 
 
@@ -193,6 +185,6 @@
              **/
 
             //
-        }        
+        }
     };
 </script>

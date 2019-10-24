@@ -1,7 +1,7 @@
 <template>
 
     <div id="circular-anim">
-    
+
         <canvas id="canvas"></canvas>
 
     </div>
@@ -16,7 +16,7 @@
      **/
 
     import Draw from '../mixins/Draw.js';
-    
+
 
     export default {
         props: {
@@ -44,10 +44,10 @@
                 speed: 0,
                 angle: 0,
 
-                sectionLength: 0, 
+                sectionLength: 0,
                 sectionLengthCenter: 0,
-                cirleX: 0, 
-                ellipseX: 0, 
+                cirleX: 0,
+                ellipseX: 0,
                 lissajousX: 0,
             };
         },
@@ -68,7 +68,7 @@
                 this.lissajousXRadius = 75;
                 this.lissajousYRadius = 150;
                 this.lissajousXAngle = 0;
-                this.lissajousYAngle = 0;                
+                this.lissajousYAngle = 0;
                 this.lissajousXSpeed = 0.08;
                 this.lissajousYSpeed = 0.13;
 
@@ -126,11 +126,11 @@
 
                 this.lissajousXAngle += this.lissajousXSpeed;
                 this.lissajousYAngle += this.lissajousYSpeed;
-                
+
 
                 /* Repeat render function */
                 requestAnimationFrame(this.animateBalls);
-            },            
+            },
 
             /**
              * Draw ball in circular motion
@@ -175,7 +175,7 @@
 
                 /* Draw the ball */
                 this.drawBall("green", x, y);
-            },                        
+            },
 
             /**
              * Draw a ball
@@ -214,7 +214,7 @@
                 this.context.fillStyle = "blue";
                 this.context.fillText("Ellipse", y, x += lineHeight);
                 this.context.fillStyle = "green";
-                this.context.fillText("Lissajous", y, x += lineHeight);                
+                this.context.fillText("Lissajous", y, x += lineHeight);
             },
 
 
@@ -234,6 +234,6 @@
              **/
 
             //
-        }        
+        }
     };
 </script>

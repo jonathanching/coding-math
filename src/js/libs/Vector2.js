@@ -1,7 +1,7 @@
 /**
  * ==================================================================================
  * Vector2 class
- * 
+ *
  * ==================================================================================
  **/
 
@@ -11,7 +11,7 @@ export class Vector2 {
         this.x = x;
         this.y = y;
     }
-    
+
 
     /**
      * ==================================================================================
@@ -45,11 +45,11 @@ export class Vector2 {
      * @param  Vector2 vector2
      * @return Vector2
      */
-    add(vector2) { 
+    add(vector2) {
         return new Vector2(this.x + vector2.x, this.y + vector2.y);
     }
 
-    subtract(vector2) { 
+    subtract(vector2) {
         return new Vector2(this.x - vector2.x, this.y - vector2.y);
     }
 
@@ -57,7 +57,7 @@ export class Vector2 {
      * Multiply or divide the `Vector2` parameter and return as a `Vector2` new instance
      * @param  int val
      * @return Vector2
-     */    
+     */
     multiply(value) {
         return new Vector2(this.x * value, this.y * value);
     }
@@ -70,12 +70,12 @@ export class Vector2 {
      * Add or subtract the `Vector2` parameter
      * @param Vector2 vector2
      */
-    addTo(vector2) { 
+    addTo(vector2) {
         this.x += vector2.x;
         this.y += vector2.y;
     }
 
-    subtractTo(vector2) { 
+    subtractTo(vector2) {
         this.x -= vector2.x;
         this.y -= vector2.y;
     }

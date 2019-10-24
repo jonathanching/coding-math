@@ -164,14 +164,6 @@
                 this.context.restore();
             },
 
-            /**
-             * Draw helpers
-             */
-            drawHelpers: function() {
-                this.drawGrid();
-                this.drawAxis();
-            },
-
 
             /**
              * ==================================================================================

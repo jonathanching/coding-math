@@ -1,7 +1,7 @@
 <template>
 
     <div id="easing-tweening">
-    
+
         <canvas id="canvas"></canvas>
 
     </div>
@@ -15,9 +15,9 @@
      * ==================================================================================
      **/
 
-    import { Tween } from '../libs/Tween.js'; 
+    import { Tween } from '../libs/Tween.js';
     import Draw from '../mixins/Draw.js';
-    
+
 
     export default {
         props: {
@@ -60,7 +60,7 @@
                 for(var i = 1; i <= this.noOfBalls; i++) {
                     /* Push in the collection all created ball object */
                     this.balls.push({
-                            x: this.canvasHalfWidth / 2, 
+                            x: this.canvasHalfWidth / 2,
                             /* Position the balls vertically on the left side of the screen */
                             y: (ballHeight * i) - (ballHeight / 2),
                         });
@@ -90,47 +90,47 @@
                      * See `Tween.js` `Easing` methods for complete details
                      */
                     switch(i) {
-                        case 0: 
+                        case 0:
                             ball.color = "red";
-                            easeFunc = Tween.easeInOutQuad; 
+                            easeFunc = Tween.easeInOutQuad;
                         break;
-                        case 1: 
+                        case 1:
                             ball.color = "orange";
-                            easeFunc = Tween.easeInOutCubic; 
+                            easeFunc = Tween.easeInOutCubic;
                         break;
-                        case 2: 
+                        case 2:
                             ball.color = "pink";
-                            easeFunc = Tween.easeInOutQuart; 
+                            easeFunc = Tween.easeInOutQuart;
                         break;
-                        case 3: 
+                        case 3:
                             ball.color = "green";
-                            easeFunc = Tween.easeInOutQuint; 
+                            easeFunc = Tween.easeInOutQuint;
                         break;
-                        case 4: 
+                        case 4:
                             ball.color = "blue";
-                            easeFunc = Tween.easeInOutSine; 
+                            easeFunc = Tween.easeInOutSine;
                         break;
-                        case 5: 
+                        case 5:
                             ball.color = "violet";
-                            easeFunc = Tween.easeInOutExpo; 
+                            easeFunc = Tween.easeInOutExpo;
                         break;
-                        case 6: 
+                        case 6:
                             ball.color = "black";
-                            easeFunc = Tween.easeInOutCirc; 
+                            easeFunc = Tween.easeInOutCirc;
                         break;
-                        case 7: 
+                        case 7:
                             ball.color = "gray";
-                            easeFunc = Tween.easeInOutElastic; 
+                            easeFunc = Tween.easeInOutElastic;
                         break;
-                        case 8: 
+                        case 8:
                             ball.color = "brown";
-                            easeFunc = Tween.easeInOutBack; 
+                            easeFunc = Tween.easeInOutBack;
                         break;
-                        case 9: 
+                        case 9:
                             ball.color = "#9c27b0";
-                            easeFunc = Tween.easeInOutBounce; 
-                        break;                                                                        
-                    }                                                
+                            easeFunc = Tween.easeInOutBounce;
+                        break;
+                    }
 
 
                     /* Register tween on the `ball` */
@@ -146,19 +146,19 @@
              */
             animateBall: function(direction, ball, easing) {
                 new Tween(
-                        ball, 
+                        ball,
                         /* Move to the right or left */
-                        { 
-                            x: (direction ? 
+                        {
+                            x: (direction ?
                                     this.canvas.width - this.margin :
                                     this.canvasHalfWidth / 2),
-                        }, 
-                        this.duration, 
+                        },
+                        this.duration,
                         easing,
-                        this.draw, 
+                        this.draw,
                         /* On complete, reverse tween */
                         () => { this.animateBall(!direction, ball, easing); }
-                    );                
+                    );
             },
 
             /**
@@ -196,7 +196,7 @@
              * Draw helpers
              */
             drawHelpers: function() {
-                this.drawGrid(); 
+                this.drawGrid();
                 this.drawAxis();
                 this.drawLegend();
             },
@@ -216,9 +216,9 @@
                 this.context.fillStyle = "red";
                 this.context.fillText("Quadratic", y, x += lineHeight);
                 this.context.fillStyle = "orange";
-                this.context.fillText("Cubic", y, x += lineHeight);                
+                this.context.fillText("Cubic", y, x += lineHeight);
                 this.context.fillStyle = "pink";
-                this.context.fillText("Quartic", y, x += lineHeight);                
+                this.context.fillText("Quartic", y, x += lineHeight);
                 this.context.fillStyle = "green";
                 this.context.fillText("Quintic", y, x += lineHeight);
                 this.context.fillStyle = "blue";
@@ -228,12 +228,12 @@
                 this.context.fillStyle = "black";
                 this.context.fillText("Circular", y, x += lineHeight);
                 this.context.fillStyle = "gray";
-                this.context.fillText("Elastic", y, x += lineHeight);                
+                this.context.fillText("Elastic", y, x += lineHeight);
                 this.context.fillStyle = "brown";
-                this.context.fillText("Backing", y, x += lineHeight);                                
+                this.context.fillText("Backing", y, x += lineHeight);
                 this.context.fillStyle = "#9c27b0";
                 this.context.fillText("Bounce", y, x += lineHeight);
-            },            
+            },
 
 
             /**
@@ -252,6 +252,6 @@
              **/
 
             //
-        }        
+        }
     };
 </script>

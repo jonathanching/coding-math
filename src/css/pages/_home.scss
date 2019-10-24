@@ -7,7 +7,9 @@
 #home {
 
     .home__header {
+        position: relative;
         margin: 50px auto;
+        z-index: 1;
 
         .home__header__title {
 
@@ -25,6 +27,8 @@
     }
 
     .home__project-list {
+        position: relative;
+        z-index: 1;
 
         ul {
             width: 300px;

@@ -46,17 +46,27 @@ export default {
             this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
         },
 
+
+        /**
+         * Draw grid & axis helpers
+         */
+        drawHelpers: function() {
+            this.drawGrid();
+            this.drawAxis();
+        },
+
         /**
          * Draw grid on canvas
          * @param integer spacing
          */
         drawGrid: function(color = "#f7f7f7", spacing = 20) {
             this.context.save();
-            this.context.beginPath();
 
+            this.context.translate(0, 0);
             this.context.strokeStyle = color;
             this.context.lineWidth = 2;
 
+            this.context.beginPath();
             /* Draw horizontal lines */
             for(var x = 0; x < this.canvas.width; x += spacing) {
                 this.context.moveTo(x, 0);
@@ -68,9 +78,8 @@ export default {
                 this.context.moveTo(0, y);
                 this.context.lineTo(this.canvas.width, y);
             }
-
-
             this.context.stroke();
+
             this.context.restore();
         },
 
@@ -83,11 +92,12 @@ export default {
                 middle = this.canvasHalfHeight, bottom = this.canvas.height;
 
             this.context.save();
-            this.context.beginPath();
 
+            this.context.translate(0, 0);
             this.context.strokeStyle = color;
             this.context.lineWidth = thick;
 
+            this.context.beginPath();
             /* Draw horizontal */
             this.context.moveTo(left, middle - hThick);
             this.context.lineTo(right, middle - hThick);
@@ -95,8 +105,8 @@ export default {
             /* Draw vertical */
             this.context.moveTo(center - hThick, 0);
             this.context.lineTo(center - hThick, bottom);
-
             this.context.stroke();
+
             this.context.restore();
         },
 

@@ -1,7 +1,7 @@
 <template>
 
     <div id="trig-func-graph">
-    
+
         <canvas id="canvas"></canvas>
 
     </div>
@@ -16,7 +16,7 @@
      **/
 
     import Draw from '../mixins/Draw.js';
-    
+
 
     export default {
         props: {
@@ -62,7 +62,7 @@
                 this.drawHelpers();
 
                 this.drawWave();
-            },          
+            },
 
             /**
              * Draw graph/wave
@@ -96,7 +96,7 @@
                     this.drawLine("blue", x, cosY);
                     this.drawLine("green", x, tanY);
                 }
-            },            
+            },
 
             /**
              * Draw trig function lines
@@ -113,7 +113,7 @@
                 this.drawGrid();
                 this.drawAxis();
                 this.drawLegend();
-            },              
+            },
 
             /**
              * Draw legend texts
@@ -152,6 +152,6 @@
              **/
 
             //
-        }        
+        }
     };
 </script>

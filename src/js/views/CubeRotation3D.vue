@@ -154,14 +154,6 @@
                 this.context.stroke();
             },
 
-            /**
-             * Draw helpers
-             */
-            drawHelpers: function() {
-                this.drawGrid();
-                this.drawAxis();
-            },
-
 
             /**
              * ==================================================================================

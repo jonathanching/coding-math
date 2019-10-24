@@ -1,7 +1,7 @@
 <template>
 
     <div id="bezier-curves">
-    
+
         <canvas id="canvas"></canvas>
 
     </div>
@@ -18,7 +18,7 @@
     import { Vector2 } from '../libs/Vector2.js';
     import { Math2 } from '../libs/Math2.js';
     import Draw from '../mixins/Draw.js';
-    
+
 
     export default {
         props: {
@@ -64,12 +64,12 @@
 
                 /**
                  * Create quadratic bezier curve points
-                 * 
+                 *
                  */
-                
+
                 /* Starting point at the upper left corner */
                 this.quadPStart = new Vector2(
-                            this.canvasHalfWidth - this.canvasHalfWidth / 2, 
+                            this.canvasHalfWidth - this.canvasHalfWidth / 2,
                             this.canvasHalfHeight - this.canvasHalfHeight / 2
                         );
 
@@ -84,19 +84,19 @@
 
                 /* Ending point at the upper right corner */
                 this.quadPFinal = new Vector2(
-                            this.canvasHalfWidth + this.canvasHalfWidth / 2, 
+                            this.canvasHalfWidth + this.canvasHalfWidth / 2,
                             this.canvasHalfHeight / 2
                         );
 
 
                 /**
                  * Create cubic bezier curve points
-                 * 
+                 *
                  */
-                
+
                 /* Starting point at the upper left corner */
                 this.cubicPStart = new Vector2(
-                            this.canvasHalfWidth - this.canvasHalfWidth / 2, 
+                            this.canvasHalfWidth - this.canvasHalfWidth / 2,
                             this.canvasHalfHeight + this.canvasHalfHeight / 2
                         );
 
@@ -116,11 +116,11 @@
 
                 /* Ending point at the upper right corner */
                 this.cubicPFinal = new Vector2(
-                            this.canvasHalfWidth + this.canvasHalfWidth / 2, 
+                            this.canvasHalfWidth + this.canvasHalfWidth / 2,
                             this.canvasHalfHeight + this.canvasHalfHeight / 2
                         );
 
-                
+
 
                 this.animateMovement();
             },
@@ -130,7 +130,7 @@
              * ==================================================================================
              * @Methods
              * ==================================================================================
-             **/        
+             **/
 
             /**
              * Animate cubic bezier movement
@@ -148,8 +148,8 @@
                  * See `Math2.js` `quadraticBezier` method for more details
                  */
                 Math2.quadraticBezier(
-                        this.quadPoint, 
-                        this.quadPStart, this.quadPB1, this.quadPFinal, 
+                        this.quadPoint,
+                        this.quadPStart, this.quadPB1, this.quadPFinal,
                         this.t
                     );
 
@@ -222,7 +222,7 @@
                 this.context.beginPath();
                 this.context.arc(x, y, this.radius, 0, Math.PI * 2, false);
                 this.context.fill();
-            },      
+            },
 
             /**
              * Draw helpers
@@ -234,7 +234,7 @@
 
                 this.drawQuadInterLine(this.quadPStart, this.quadPB1, this.quadPFinal);
                 this.drawCubicInterLine(this.cubicPStart, this.cubicPB1, this.cubicPB2, this.cubicPFinal);
-            },  
+            },
 
             /**
              * Draw quadratic intersection line
@@ -246,7 +246,7 @@
                 this.drawBall("rgba(255, 150, 150, 0.5)", x1, y1);
                 this.drawBall("rgba(255, 150, 150, 0.5)", x2, y2);
                 this.drawLine("rgba(255, 150, 150, 0.5)", new Vector2(x1, y1), new Vector2(x2, y2));
-            },                        
+            },
 
             /**
              * Draw cubic intersection line
@@ -278,7 +278,7 @@
                 this.context.fillStyle = "#333";
                 this.context.fillText("LEGEND", y, x);
                 this.context.fillStyle = "black";
-                this.context.fillText("Top : Quadratic", y, x += lineHeight);                
+                this.context.fillText("Top : Quadratic", y, x += lineHeight);
                 this.context.fillStyle = "black";
                 this.context.fillText("Bot : Cubic", y, x += lineHeight);
                 x += lineHeight;
@@ -307,6 +307,6 @@
              **/
 
             //
-        }        
+        }
     };
 </script>

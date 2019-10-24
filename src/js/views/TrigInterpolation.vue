@@ -1,7 +1,7 @@
 <template>
 
     <div id="animation-ease">
-    
+
         <canvas id="canvas"></canvas>
 
     </div>
@@ -16,7 +16,7 @@
      **/
 
     import Draw from '../mixins/Draw.js';
-    
+
 
     export default {
         props: {
@@ -92,11 +92,11 @@
 
                 /* Add in speed value to the angle */
                 this.angle += this.speed;
-                
+
 
                 /* Repeat render function */
                 requestAnimationFrame(this.animate);
-            },            
+            },
 
             /**
              * Draw a ball
@@ -153,6 +153,6 @@
              **/
 
             //
-        }        
+        }
     };
 </script>

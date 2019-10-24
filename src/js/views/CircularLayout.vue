@@ -1,7 +1,7 @@
 <template>
 
     <div id="circular-layout">
-    
+
         <canvas id="canvas"></canvas>
 
     </div>
@@ -16,7 +16,7 @@
      **/
 
     import Draw from '../mixins/Draw.js';
-    
+
 
     export default {
         props: {
@@ -63,7 +63,7 @@
              * ==================================================================================
              * @Methods
              * ==================================================================================
-             **/           
+             **/
 
             /**
              * Draw on canvas element
@@ -88,7 +88,7 @@
                     /* Draw balls */
                     this.drawBall(x, y);
                 }
-            },                    
+            },
 
             /**
              * Draw a ball
@@ -97,14 +97,6 @@
                 this.context.beginPath();
                 this.context.arc(x, y, 10, 0, Math.PI * 2, false);
                 this.context.fill();
-            },
-
-            /**
-             * Draw helpers
-             */
-            drawHelpers: function() {
-                this.drawGrid();
-                this.drawAxis();
             },
 
 
@@ -124,6 +116,6 @@
              **/
 
             //
-        }        
+        }
     };
 </script>

@@ -107,10 +107,12 @@
 
 
                 /* Draw the `Koch` fractal from each of the `Triangle` side */
-                this.koch(this.triangle[0], this.triangle[1], this.iteration);
-                this.koch(this.triangle[1], this.triangle[2], this.iteration);
-                this.koch(this.triangle[2], this.triangle[0], this.iteration);
+                for(var i = 0; i < this.triangle.length; i++) {
+                    let curr = this.triangle[i],
+                        next = this.triangle[(i + 1) % this.triangle.length];
 
+                    this.koch(curr, next, this.iteration);
+                }
 
 
                 /* Repeat render function */
@@ -138,14 +140,6 @@
                 this.context.stroke();
 
                 this.context.restore();
-            },
-
-            /**
-             * Draw helpers
-             */
-            drawHelpers: function() {
-                this.drawGrid();
-                this.drawAxis();
             },
 
 

@@ -1,7 +1,7 @@
 <template>
 
     <div id="interplanetary-gravity">
-    
+
         <canvas id="canvas"></canvas>
 
     </div>
@@ -65,7 +65,7 @@
 
                 /**
                  * Create the Planet `gravitational` object
-                 * 
+                 *
                  */
 
                 /* Create planet 1 at the upper left side of the canvas */
@@ -81,7 +81,7 @@
 
                 /**
                  * Create the `asteroid` objects
-                 * 
+                 *
                  */
 
                 /* Set `asteroid` base position, angle and speed */
@@ -90,8 +90,8 @@
                 this.asteroidEmitter.position.y = this.canvasHalfHeight;
 
                 for(var i = 0; i < this.noOfAsteroids; i++) {
-                    let asteroid = new Particle(                            
-                            this.asteroidEmitter.position.x, this.asteroidEmitter.position.y, 
+                    let asteroid = new Particle(
+                            this.asteroidEmitter.position.x, this.asteroidEmitter.position.y,
                             /* Set random `speed` from 5-6 */
                             Math.random() * 2 + 5,
                             /* Point the angle straight up (45deg) then add in a randomize angle of 0.1 */
@@ -142,7 +142,7 @@
                     /**
                      * Adding of gravity to `particle`s current velocity
                      * Adding of velocity to `particle`s current position
-                     */    
+                     */
                     asteroid.update();
 
                     /* Draw ball */
@@ -180,14 +180,6 @@
                 this.context.beginPath();
                 this.context.arc(x, y, radius, 0, Math.PI * 2, false);
                 this.context.fill();
-            },            
-
-            /**
-             * Draw helpers
-             */
-            drawHelpers: function() {
-                this.drawGrid();
-                this.drawAxis();
             },
 
 
@@ -205,14 +197,14 @@
              * @Checker
              * ==================================================================================
              **/
-            
+
             /**
              * Check `particle` if outside the screen or collides w/ other planets, reset if it is
              * @param  Particle p
              * @return boolean
              */
             checkOutofBounds: function(p) {
-                
+
                 if(
                     /* If outside the canvas on... */
                     /* ...right side */
@@ -232,7 +224,7 @@
                 }
 
                 return false;
-            },   
-        }        
+            },
+        }
     };
 </script>

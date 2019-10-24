@@ -1,7 +1,7 @@
 <template>
 
     <div id="spaceship-movement">
-    
+
         <canvas id="canvas"></canvas>
 
     </div>
@@ -18,7 +18,7 @@
     import { Vector2 } from '../libs/Vector2.js';
     import { Particle } from '../libs/Particle.js';
     import Draw from '../mixins/Draw.js';
-    
+
 
     export default {
         props: {
@@ -33,7 +33,7 @@
             return {
                 radius: 0,
                 speed: 0,
-            
+
                 character: null,
                 movement: 0,
                 direction: 0,
@@ -62,7 +62,7 @@
                 this.rotation = 0.08;
                 this.character = new Particle(
                                     /* Position at the center of the canvas */
-                                    this.canvasHalfWidth, this.canvasHalfHeight, 
+                                    this.canvasHalfWidth, this.canvasHalfHeight,
                                     /* Set initial velocity to 0 */
                                     0,
                                     /* Point directly upward (90deg) */
@@ -163,7 +163,7 @@
                 this.context.fillText("Arrow Down  :   Move backward", y, x += lineHeight);
                 this.context.fillText("Arrow Left      :   Rotate left", y, x += lineHeight);
                 this.context.fillText("Arrow Right   :   Rotate right", y, x += lineHeight);
-            },            
+            },
 
 
             /**
@@ -209,10 +209,10 @@
              */
             handleMovement: function() {
                 /* Add forward momentum */
-                if(this.isForward) 
+                if(this.isForward)
                     this.movement = this.getAcceleration();
                 /* Add reverse momentum */
-                if(this.isBackward) 
+                if(this.isBackward)
                     this.movement = this.getAcceleration(false);
                 /* Remove movement when not moving forward or backward */
                 if(!this.isForward && !this.isBackward)
@@ -302,6 +302,6 @@
                     this.character.position.y = this.canvas.height;
                 }
             },
-        }        
+        }
     };
 </script>

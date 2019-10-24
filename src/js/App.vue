@@ -18,7 +18,9 @@
 
         <div class="app__content">
 
-            <router-view></router-view>
+            <transition name="fade" mode="out-in">
+                <router-view></router-view>
+            </transition>
 
         </div>
 
@@ -32,8 +34,7 @@
      * Main VUE Component
      * ==================================================================================
      **/
-     
-    import { Vector2 } from './libs/Vector2.js';
+
 
     export default {
         props: {
@@ -65,7 +66,7 @@
             currProjectLabel: function() {
                 if(this.currProject)
                     return this.currProject.label;
-                
+
                 return '';
             },
 
@@ -76,9 +77,9 @@
             currProjectDesc: function() {
                 if(this.currProject)
                     return this.currProject.desc;
-                
+
                 return '';
-            },            
+            },
         },
 
         data: function() {
@@ -104,7 +105,7 @@
              * ==================================================================================
              * @Methods
              * ==================================================================================
-             **/                 
+             **/
 
             //
 
@@ -143,6 +144,6 @@
             testScript: function() {
                 //
             },
-        }        
+        }
     };
 </script>

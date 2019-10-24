@@ -170,4 +170,17 @@ export class Math2 {
     static randomRange(min, max) {
         return min + Math.random() * (max - min);
     }
+
+    /**
+     * Get distance of 2 points
+     * @param  {Object} p1
+     * @param  {Object} p2
+     * @return {Int}
+     */
+    static distance(p1, p2) {
+        let dX = p2.x - p1.x,
+            dY = p2.y - p1.y;
+
+        return Math.sqrt(dX * dX + dY * dY);
+    }
 }

@@ -1,7 +1,7 @@
 <template>
 
     <div id="animating-friction">
-    
+
         <canvas id="canvas"></canvas>
 
     </div>
@@ -18,7 +18,7 @@
     import { Vector2 } from '../libs/Vector2.js';
     import { Particle } from '../libs/Particle.js';
     import Draw from '../mixins/Draw.js';
-    
+
 
     export default {
         props: {
@@ -33,7 +33,7 @@
             return {
                 radius: 0,
                 speed: [],
-            
+
                 particles: [],
                 noOfParticles: 3,
             };
@@ -52,7 +52,7 @@
                 /**
                  * Set a higher `speed` value to compensate w/ the addition
                  * of `friction` value on the movement calculation
-                 */                
+                 */
                 this.speed[0] = 25;
                 this.speed[1] = 30;
                 this.speed[2] = 20;
@@ -98,7 +98,7 @@
 
                     this.particles.push(p);
                 }
-            },          
+            },
 
             /**
              * Animate particles
@@ -118,7 +118,7 @@
                     /**
                      * Subtracting friction to `particle`s current velocity
                      * Adding of velocity to `particle`s current position
-                     */                    
+                     */
                     p.update();
 
 
@@ -150,14 +150,6 @@
                 this.context.fill();
             },
 
-            /**
-             * Draw helpers
-             */
-            drawHelpers: function() {
-                this.drawGrid(); 
-                this.drawAxis();
-            },
-
 
             /**
              * ==================================================================================
@@ -186,6 +178,6 @@
 
                 return false;
             },
-        }        
+        }
     };
 </script>

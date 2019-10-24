@@ -1,7 +1,7 @@
 <template>
 
     <div id="acceleration-vector">
-    
+
         <canvas id="canvas"></canvas>
 
     </div>
@@ -18,7 +18,7 @@
     import { Vector2 } from '../libs/Vector2.js';
     import { Particle } from '../libs/Particle.js';
     import Draw from '../mixins/Draw.js';
-    
+
 
     export default {
         props: {
@@ -33,7 +33,7 @@
             return {
                 radius: 0,
                 speed: [],
-            
+
                 particles: [],
                 noOfParticles: 3,
             };
@@ -87,7 +87,7 @@
                             )
                         );
                 }
-            },          
+            },
 
             /**
              * Animate particles
@@ -113,7 +113,7 @@
 
                     /**
                      * Adding of velocity to `particle`s current position
-                     */                    
+                     */
                     p.update();
 
 
@@ -143,14 +143,6 @@
                 this.context.beginPath();
                 this.context.arc(x, y, this.radius, 0, Math.PI * 2, false);
                 this.context.fill();
-            },
-
-            /**
-             * Draw helpers
-             */
-            drawHelpers: function() {
-                this.drawGrid(); 
-                this.drawAxis();
             },
 
 
@@ -191,6 +183,6 @@
 
                 return false;
             },
-        }        
+        }
     };
 </script>

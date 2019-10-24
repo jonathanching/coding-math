@@ -122,14 +122,6 @@
                 this.context.fill();
             },
 
-            /**
-             * Draw helpers
-             */
-            drawHelpers: function() {
-                this.drawGrid();
-                this.drawAxis();
-            },
-
 
             /**
              * ==================================================================================
