@@ -85,29 +85,41 @@
                             );
 
 
-                this.animateCircle();
+                this.render();
             },
 
 
             /**
              * ==================================================================================
-             * @Methods
+             * @Controller
              * ==================================================================================
              **/
 
             /**
-             * Animate circles
+             * Update loop event
              */
-            animateCircle: function() {
+            update: function() {
+                /* Check circle collision, change color if it is */
+                this.checkCircleCollision();
+            },
+
+
+            /**
+             * ==================================================================================
+             * @Renderer
+             * ==================================================================================
+             **/
+
+            /**
+             * Draw loop event
+             */
+            draw: function() {
                 /* First clear all drawings */
                 this.clearCanvas();
 
                 /* Just adding in helpers and labels */
                 this.drawHelpers();
 
-
-                /* Check circle collision, change color if it is */
-                this.checkCircleCollision();
 
                 /* Draw the circles... */
                 /* ...static circle */
@@ -122,10 +134,6 @@
                         this.mouseX, this.mouseY,
                         this.mouseRadius
                     );
-
-
-                /* Repeat render function */
-                requestAnimationFrame(this.animateCircle);
             },
 
             /**

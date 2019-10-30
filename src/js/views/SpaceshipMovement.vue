@@ -70,8 +70,8 @@
                                 );
 
 
-                this.animateMovement();
                 this.bindControllerEvents();
+                this.render();
             },
 
 
@@ -82,15 +82,67 @@
              **/
 
             /**
-             * Animate character movement
+             * Bind Arrow keys for the movement events
              */
-            animateMovement: function() {
-                /* First clear all drawings */
-                this.clearCanvas();
+            bindControllerEvents: function() {
+                /* Enable `movement` triggers value on keyup */
+                this.bindKeyEvents('keydown', true);
+                /* Disable `movement` triggers value on keyup */
+                this.bindKeyEvents('keyup', false);
+            },
 
-                /* Just adding in helpers and labels */
-                this.drawHelpers();
+            /**
+             * Bind key `movement` event
+             * @param String   eventName
+             * @param Boolean  bool
+             */
+            bindKeyEvents: function(eventName, bool) {
+                document.body.addEventListener(eventName, (e) => {
+                    /* If key code is... */
+                    switch(e.keyCode) {
+                        /* ...up */
+                        case 38: this.isForward = bool; break;
+                        /* ...down */
+                        case 40: this.isBackward = bool; break;
+                        /* ...left */
+                        case 37: this.isLeft = bool; break;
+                        /* ...right */
+                        case 39: this.isRight = bool; break;
+                    };
+                });
+            },
 
+
+            /**
+             * ==================================================================================
+             * @Controller
+             * ==================================================================================
+             **/
+
+            /**
+             * Handle character `movement` events
+             */
+            handleMovement: function() {
+                /* Add forward momentum */
+                if(this.isForward)
+                    this.movement = this.getAcceleration();
+                /* Add reverse momentum */
+                if(this.isBackward)
+                    this.movement = this.getAcceleration(false);
+                /* Remove movement when not moving forward or backward */
+                if(!this.isForward && !this.isBackward)
+                    this.movement.clear();
+
+
+                /* Rotate left or right */
+                if(this.isLeft) this.direction -= this.rotation;
+                if(this.isRight) this.direction += this.rotation;
+            },
+
+            /**
+             * Update loop event
+             */
+            update: function() {
 
                 /* Add vector to `movement` or `rotation` depending on action keys pushed */
                 this.handleMovement();
@@ -108,15 +160,30 @@
                 this.character.update();
 
 
-                /* Draw the character */
-                this.drawCharacter(this.character.position.x, this.character.position.y);
-
                 /* Check if out of bounds, redraw on opposite side */
                 this.checkOutofBounds();
+            },
 
 
-                /* Repeat render function */
-                requestAnimationFrame(this.animateMovement);
+            /**
+             * ==================================================================================
+             * @Renderer
+             * ==================================================================================
+             **/
+
+            /**
+             * Draw loop event
+             */
+            draw: function() {
+                /* First clear all drawings */
+                this.clearCanvas();
+
+                /* Just adding in helpers and labels */
+                this.drawHelpers();
+
+
+                /* Draw the character */
+                this.drawCharacter(this.character.position.x, this.character.position.y);
             },
 
             /**
@@ -163,65 +230,6 @@
                 this.context.fillText("Arrow Down  :   Move backward", y, x += lineHeight);
                 this.context.fillText("Arrow Left      :   Rotate left", y, x += lineHeight);
                 this.context.fillText("Arrow Right   :   Rotate right", y, x += lineHeight);
-            },
-
-
-            /**
-             * Bind Arrow keys for the movement events
-             */
-            bindControllerEvents: function() {
-                /* Enable `movement` triggers value on keyup */
-                this.bindKeyEvents('keydown', true);
-                /* Disable `movement` triggers value on keyup */
-                this.bindKeyEvents('keyup', false);
-            },
-
-            /**
-             * Bind key `movement` event
-             * @param String   eventName
-             * @param Boolean  bool
-             */
-            bindKeyEvents: function(eventName, bool) {
-                document.body.addEventListener(eventName, (e) => {
-                    /* If key code is... */
-                    switch(e.keyCode) {
-                        /* ...up */
-                        case 38: this.isForward = bool; break;
-                        /* ...down */
-                        case 40: this.isBackward = bool; break;
-                        /* ...left */
-                        case 37: this.isLeft = bool; break;
-                        /* ...right */
-                        case 39: this.isRight = bool; break;
-                    };
-                });
-            },
-
-
-           /**
-             * ==================================================================================
-             * @Controller
-             * ==================================================================================
-             **/
-
-            /**
-             * Handle character `movement` events
-             */
-            handleMovement: function() {
-                /* Add forward momentum */
-                if(this.isForward)
-                    this.movement = this.getAcceleration();
-                /* Add reverse momentum */
-                if(this.isBackward)
-                    this.movement = this.getAcceleration(false);
-                /* Remove movement when not moving forward or backward */
-                if(!this.isForward && !this.isBackward)
-                    this.movement.clear();
-
-
-                /* Rotate left or right */
-                if(this.isLeft) this.direction -= this.rotation;
-                if(this.isRight) this.direction += this.rotation;
             },
 
 

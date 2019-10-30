@@ -59,7 +59,7 @@
                     );
 
 
-                this.animateFractal();
+                this.render();
             },
 
 
@@ -92,54 +92,6 @@
 
 
                 return triangle;
-            },
-
-
-            /**
-             * Animate fractal
-             */
-            animateFractal: function() {
-                /* First clear all drawings */
-                this.clearCanvas();
-
-                /* Just adding in helpers and labels */
-                this.drawHelpers();
-
-
-                /* Draw the `Koch` fractal from each of the `Triangle` side */
-                for(var i = 0; i < this.triangle.length; i++) {
-                    let curr = this.triangle[i],
-                        next = this.triangle[(i + 1) % this.triangle.length];
-
-                    this.koch(curr, next, this.iteration);
-                }
-
-
-                /* Repeat render function */
-                requestAnimationFrame(this.animateFractal);
-            },
-
-
-            /**
-             * Draw a line
-             * @param {array} arr
-             */
-            drawLine: function(arr) {
-                this.context.save();
-
-                this.context.beginPath();
-                for(var i = 0; i < arr.length; i++) {
-                    let point = arr[i];
-
-                    if(i === 0) {
-                        this.context.moveTo(point.x, point.y);
-                    } else {
-                        this.context.lineTo(point.x, point.y);
-                    }
-                }
-                this.context.stroke();
-
-                this.context.restore();
             },
 
 
@@ -194,6 +146,67 @@
 
                     this.drawLine([p1, pA, pB, pC, p2]);
                 }
+            },
+
+            /**
+             * Update loop event
+             */
+            update: function() {
+
+            },
+
+
+            /**
+             * ==================================================================================
+             * @Renderer
+             * ==================================================================================
+             **/
+
+            /**
+             * Draw loop event
+             */
+            draw: function() {
+                /* First clear all drawings */
+                this.clearCanvas();
+
+                /* Just adding in helpers and labels */
+                this.drawHelpers();
+
+
+                /* Draw the `Koch` fractal from each of the `Triangle` side */
+                for(var i = 0; i < this.triangle.length; i++) {
+                    let curr = this.triangle[i],
+                        next = this.triangle[(i + 1) % this.triangle.length];
+
+                    this.koch(curr, next, this.iteration);
+                }
+
+
+                /* Repeat render function */
+                requestAnimationFrame(this.animateFractal);
+            },
+
+
+            /**
+             * Draw a line
+             * @param {array} arr
+             */
+            drawLine: function(arr) {
+                this.context.save();
+
+                this.context.beginPath();
+                for(var i = 0; i < arr.length; i++) {
+                    let point = arr[i];
+
+                    if(i === 0) {
+                        this.context.moveTo(point.x, point.y);
+                    } else {
+                        this.context.lineTo(point.x, point.y);
+                    }
+                }
+                this.context.stroke();
+
+                this.context.restore();
             },
 
 

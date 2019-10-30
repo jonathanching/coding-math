@@ -91,29 +91,42 @@
                             );
 
 
-                this.animateRectangle();
+                this.render();
             },
 
 
             /**
              * ==================================================================================
-             * @Methods
+             * @Controller
              * ==================================================================================
              **/
 
             /**
-             * Animate rectangles
+             * Update loop event
              */
-            animateRectangle: function() {
+            update: function() {
+
+                /* Check rectangle collision, change color if it is */
+                this.checkRectangleCollision();
+            },
+
+
+            /**
+             * ==================================================================================
+             * @Renderer
+             * ==================================================================================
+             **/
+
+            /**
+             * Draw loop event
+             */
+            draw: function() {
                 /* First clear all drawings */
                 this.clearCanvas();
 
                 /* Just adding in helpers and labels */
                 this.drawHelpers();
 
-
-                /* Check rectangle collision, change color if it is */
-                this.checkRectangleCollision();
 
                 /* Draw the rectangles... */
                 /* ...static rectangle */
@@ -128,10 +141,6 @@
                         this.mouse.position.x, this.mouse.position.y,
                         this.mouseWidth, this.mouseHeight
                     );
-
-
-                /* Repeat render function */
-                requestAnimationFrame(this.animateRectangle);
             },
 
             /**

@@ -62,7 +62,7 @@
                 this.createParticles();
 
 
-                this.animateParticles();
+                this.render();
             },
 
 
@@ -100,17 +100,17 @@
                 }
             },
 
+
             /**
-             * Animate particles
+             * ==================================================================================
+             * @Controller
+             * ==================================================================================
+             **/
+
+            /**
+             * Update loop event
              */
-            animateParticles: function() {
-                /* First clear all drawings */
-                this.clearCanvas();
-
-                /* Just adding in helpers and labels */
-                this.drawHelpers();
-
-
+            update: function() {
                 for(var i = 0; i < this.particles.length; i++) {
                     let p = this.particles[i];
 
@@ -122,10 +122,6 @@
                     p.update();
 
 
-                    /* Draw the ball */
-                    this.drawBall(p.position.x, p.position.y);
-
-
                     /* Check if particle is still moving */
                     if(this.checkVelocity(p))
                         this.particles.splice(i, 1);
@@ -135,10 +131,33 @@
                 /* If all particles are deleted, create another batch */
                 if(!this.particles.length)
                     this.createParticles();
+            },
 
 
-                /* Repeat render function */
-                requestAnimationFrame(this.animateParticles);
+            /**
+             * ==================================================================================
+             * @Renderer
+             * ==================================================================================
+             **/
+
+            /**
+             * Draw loop event
+             */
+            draw: function() {
+                /* First clear all drawings */
+                this.clearCanvas();
+
+                /* Just adding in helpers and labels */
+                this.drawHelpers();
+
+
+                for(var i = 0; i < this.particles.length; i++) {
+                    let p = this.particles[i];
+
+
+                    /* Draw the ball */
+                    this.drawBall(p.position.x, p.position.y);
+                }
             },
 
             /**
@@ -149,15 +168,6 @@
                 this.context.arc(x, y, this.radius, 0, Math.PI * 2, false);
                 this.context.fill();
             },
-
-
-            /**
-             * ==================================================================================
-             * @Getter/Setter
-             * ==================================================================================
-             **/
-
-            //
 
 
             /**

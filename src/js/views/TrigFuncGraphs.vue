@@ -50,17 +50,36 @@
 
             /**
              * ==================================================================================
-             * @Methods
+             * @Controller
              * ==================================================================================
              **/
 
             /**
-             * Draw on canvas element
+             * Update loop event
+             */
+            update: function() {
+
+            },
+
+
+            /**
+             * ==================================================================================
+             * @Renderer
+             * ==================================================================================
+             **/
+
+            /**
+             * Draw loop event
              */
             draw: function() {
+                /* First clear all drawings */
+                this.clearCanvas();
+
                 /* Just adding in helpers and labels */
                 this.drawHelpers();
 
+
+                /* Draw trig waves */
                 this.drawWave();
             },
 

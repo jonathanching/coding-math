@@ -72,7 +72,6 @@
                 this.lissajousXSpeed = 0.08;
                 this.lissajousYSpeed = 0.13;
 
-
                 this.speed = 0.08;
                 this.angle = 0;
 
@@ -86,20 +85,39 @@
                 this.lissajousX = this.sectionLengthCenter + (this.sectionLength * 2);
 
 
-                this.animateBalls();
+                this.render();
             },
 
 
             /**
              * ==================================================================================
-             * @Methods
+             * @Controller
              * ==================================================================================
              **/
 
             /**
-             * Animate balls
+             * Update loop event
              */
-            animateBalls: function() {
+            update: function() {
+
+                /* Add in speed value to the angle */
+                this.angle += this.speed;
+
+                this.lissajousXAngle += this.lissajousXSpeed;
+                this.lissajousYAngle += this.lissajousYSpeed;
+            },
+
+
+            /**
+             * ==================================================================================
+             * @Renderer
+             * ==================================================================================
+             **/
+
+            /**
+             * Draw loop event
+             */
+            draw: function() {
                 /* First clear all drawings */
                 this.clearCanvas();
 
@@ -119,17 +137,6 @@
                 this.drawCircular();
                 this.drawEllipse();
                 this.drawLissajous();
-
-
-                /* Add in speed value to the angle */
-                this.angle += this.speed;
-
-                this.lissajousXAngle += this.lissajousXSpeed;
-                this.lissajousYAngle += this.lissajousYSpeed;
-
-
-                /* Repeat render function */
-                requestAnimationFrame(this.animateBalls);
             },
 
             /**

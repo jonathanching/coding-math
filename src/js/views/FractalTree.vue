@@ -92,77 +92,7 @@
                 this.tree2Start = new Vector2(tree2X, this.canvas.height - (tree1Size));
 
 
-                this.animateFractal();
-            },
-
-
-            /**
-             * ==================================================================================
-             * @Methods
-             * ==================================================================================
-             **/
-
-            /**
-             * Animate fractal
-             */
-            animateFractal: function() {
-                /* First clear all drawings */
-                this.clearCanvas();
-
-                /* Just adding in helpers and labels */
-                this.drawHelpers();
-
-
-
-                /* Update both tree 1 branches' angles differently */
-                this.tree1BranchAngleA = Math.cos(this.tree1BranchAngleACurr += this.tree1BranchAngleAInc) * Math.PI / 2;
-                this.tree1BranchAngleB = Math.cos(this.tree1BranchAngleBCurr += this.tree1BranchAngleBInc) * Math.PI / 2;
-
-                /* Draw Fractal tree made from Line segments */
-                this.tree1(this.tree1Start, this.tree1End, this.tree1Iteration);
-
-
-
-                /* Update tree 2 branch's angle */
-                this.tree2RectAngle = -Math.PI / 4 + Math.sin(this.tree2RectAngleCurr += this.tree2RectAngleInc) * Math.PI / 4;
-
-                /* Draw Fractal tree made from Squares */
-                this.tree2(this.tree2Start, this.tree2Size, 0, this.tree2Iteration);
-
-
-
-                /* Repeat render function */
-                requestAnimationFrame(this.animateFractal);
-            },
-
-
-            /**
-             * Draw a line
-             * @param {Vector2} p1
-             * @param {Vector2} p2
-             */
-            drawLine: function(p1, p2) {
-                this.context.save();
-
-                this.context.beginPath();
-                this.context.moveTo(p1.x, p1.y);
-                this.context.lineTo(p2.x, p2.y);
-                this.context.stroke();
-
-                this.context.restore();
-            },
-
-            /**
-             * Draw a rectangle
-             * @param {Vector2} point
-             * @param {int}     width
-             * @param {int}     height
-             * @param {int}     angle
-             */
-            drawRectangle: function(point, width, height, angle) {
-                this.context.translate(point.x, point.y);
-                this.context.rotate(angle);
-                this.context.fillRect(0, 0, width, height);
+                this.render();
             },
 
 
@@ -230,43 +160,120 @@
             tree2: function(point, size, angle, iteration) {
                 let nextIteration = iteration - 1;
 
+                /* Always draw the base square */
                 this.context.save();
-                this.drawRectangle(new Vector2(point.x, point.y), size, -size, angle);
+                this.drawSquare(new Vector2(point.x, point.y), size, -size, angle);
 
 
-                /* Get left side values */
+                /* For the left side values... */
+                /* Set the starting point on the upper left corner of the base square */
                 let x1 = 0,
                     y1 = -size,
                     size1 = Math.abs(Math.cos(this.tree2RectAngle) * size),
                     angle1 = this.tree2RectAngle;
 
+
+                /* Check number of iterations... */
                 if(iteration) {
                     /* Iterate on each left side's square */
                     this.tree2(new Vector2(x1, y1), size1, angle1, nextIteration);
                 } else {
                     this.context.save();
-                    this.drawRectangle(new Vector2(x1, y1), size1, -size1, angle1);
+                    this.drawSquare(new Vector2(x1, y1), size1, -size1, angle1);
                     this.context.restore();
                 }
 
 
-                /* Get right side values */
+                /* For the right side values... */
+                /* Set the starting point on the lower right corner of the left square */
                 let x2 = x1 + Math.cos(this.tree2RectAngle) * size1,
                     y2 = y1 + Math.sin(this.tree2RectAngle) * size1,
                     size2 = Math.abs(Math.sin(this.tree2RectAngle)) * size,
                     angle2 = angle1 + (Math.PI / 2);
 
+
+                /* Check number of iterations... */
                 if(iteration) {
                     /* Iterate on each right side's square */
                     this.tree2(new Vector2(x2, y2), size2, angle2, nextIteration);
                 } else {
                     this.context.save();
-                    this.drawRectangle(new Vector2(x2, y2), size2, -size2, angle2);
+                    this.drawSquare(new Vector2(x2, y2), size2, -size2, angle2);
                     this.context.restore();
                 }
 
 
                 this.context.restore();
+            },
+
+            /**
+             * Update loop event
+             */
+            update: function() {
+
+                /* Update both tree 1 branches' angles differently */
+                this.tree1BranchAngleA = Math.cos(this.tree1BranchAngleACurr += this.tree1BranchAngleAInc) * Math.PI / 2;
+                this.tree1BranchAngleB = Math.cos(this.tree1BranchAngleBCurr += this.tree1BranchAngleBInc) * Math.PI / 2;
+
+
+                /* Update tree 2 branch's angle */
+                this.tree2RectAngle = -Math.PI / 4 + Math.sin(this.tree2RectAngleCurr += this.tree2RectAngleInc) * Math.PI / 4;
+            },
+
+
+            /**
+             * ==================================================================================
+             * @Renderer
+             * ==================================================================================
+             **/
+
+            /**
+             * Draw loop event
+             */
+            draw: function() {
+                /* First clear all drawings */
+                this.clearCanvas();
+
+                /* Just adding in helpers and labels */
+                this.drawHelpers();
+
+
+
+                /* Draw Fractal tree made from Line segments */
+                this.tree1(this.tree1Start, this.tree1End, this.tree1Iteration);
+
+                /* Draw Fractal tree made from Squares */
+                this.tree2(this.tree2Start, this.tree2Size, 0, this.tree2Iteration);
+            },
+
+
+            /**
+             * Draw a line
+             * @param {Vector2} p1
+             * @param {Vector2} p2
+             */
+            drawLine: function(p1, p2) {
+                this.context.save();
+
+                this.context.beginPath();
+                this.context.moveTo(p1.x, p1.y);
+                this.context.lineTo(p2.x, p2.y);
+                this.context.stroke();
+
+                this.context.restore();
+            },
+
+            /**
+             * Draw a square
+             * @param {Vector2} point
+             * @param {int}     width
+             * @param {int}     height
+             * @param {int}     angle
+             */
+            drawSquare: function(point, width, height, angle) {
+                this.context.translate(point.x, point.y);
+                this.context.rotate(angle);
+                this.context.fillRect(0, 0, width, height);
             },
 
 

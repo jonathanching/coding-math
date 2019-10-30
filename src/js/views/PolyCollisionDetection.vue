@@ -65,7 +65,7 @@
                 this.star2 = this.createStar(new Vector2(this.canvasHalfWidth + seperator, this.canvasHalfHeight));
 
 
-                this.animatePolygons();
+                this.render();
             },
 
 
@@ -91,63 +91,6 @@
                 this.updatePoints(star);
 
                 return star;
-            },
-
-            /**
-             * Animate polygons
-             */
-            animatePolygons: function() {
-                /* First clear all drawings */
-                this.clearCanvas();
-
-                /* Just adding in helpers and labels */
-                this.drawHelpers();
-
-
-                /* Update `Star` rotation */
-                this.rotateStar(this.star1, this.rotationSpeed);
-
-
-                /* Check polygon collision, change color if it does */
-                if(this.checkPolygonCollision(this.star1.points, this.star2.points)) {
-                    this.color = "#e74c3c";
-                } else {
-                    this.color = "333";
-                }
-
-
-                /* Draw the polygons... */
-                this.drawPoly(this.color, this.star1);
-                this.drawPoly("333", this.star2);
-
-
-                /* Repeat render function */
-                requestAnimationFrame(this.animatePolygons);
-            },
-
-            /**
-             * Draw a Polygon
-             * @param {string} color
-             * @param {Star}   star
-             */
-            drawPoly: function(color, star) {
-                this.context.save();
-                this.context.fillStyle = color;
-
-                this.context.beginPath();
-                /* Loop through the points */
-                for(var i = 0; i < star.points.length; i++) {
-                    let point = star.points[i];
-
-                    if(i == 0) {
-                        this.context.moveTo(point.x, point.y);
-                    } else {
-                        this.context.lineTo(point.x, point.y);
-                    }
-                }
-
-                this.context.fill();
-                this.context.restore();
             },
 
 
@@ -188,6 +131,71 @@
 
                     star.points[i] = new Vector2(x, y);
                 }
+            },
+
+            /**
+             * Update loop event
+             */
+            update: function() {
+
+                /* Update `Star` rotation */
+                this.rotateStar(this.star1, this.rotationSpeed);
+
+
+                /* Check polygon collision, change color if it does */
+                if(this.checkPolygonCollision(this.star1.points, this.star2.points)) {
+                    this.color = "#e74c3c";
+                } else {
+                    this.color = "333";
+                }
+            },
+
+
+            /**
+             * ==================================================================================
+             * @Renderer
+             * ==================================================================================
+             **/
+
+            /**
+             * Draw loop event
+             */
+            draw: function() {
+                /* First clear all drawings */
+                this.clearCanvas();
+
+                /* Just adding in helpers and labels */
+                this.drawHelpers();
+
+
+                /* Draw the polygons... */
+                this.drawPoly(this.color, this.star1);
+                this.drawPoly("333", this.star2);
+            },
+
+            /**
+             * Draw a Polygon
+             * @param {string} color
+             * @param {Star}   star
+             */
+            drawPoly: function(color, star) {
+                this.context.save();
+                this.context.fillStyle = color;
+
+                this.context.beginPath();
+                /* Loop through the points */
+                for(var i = 0; i < star.points.length; i++) {
+                    let point = star.points[i];
+
+                    if(i == 0) {
+                        this.context.moveTo(point.x, point.y);
+                    } else {
+                        this.context.lineTo(point.x, point.y);
+                    }
+                }
+
+                this.context.fill();
+                this.context.restore();
             },
 
 

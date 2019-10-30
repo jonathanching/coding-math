@@ -101,32 +101,53 @@
                 this.ball.addSpring(this.spring2, this.k, this.offset);
 
 
-                this.animateCircle();
+                this.render();
             },
 
 
             /**
              * ==================================================================================
-             * @Methods
+             * @Controller
              * ==================================================================================
              **/
 
             /**
-             * Animate circles
+             * Update loop event
              */
-            animateCircle: function() {
-                /* First clear all drawings */
-                this.clearCanvas();
-
-                /* Just adding in helpers and labels */
-                this.drawHelpers();
-
+            update: function() {
 
                 /**
                  * Adding of spring force to ball`s velocity
                  * Adding of velocity to ball`s current position
                  */
                 this.ball.update();
+
+
+                /* Check object movement, throw object again on stop */
+                if(this.ball.velocity.getLength() <= 0.01) {
+                    this.ball.position.x = Math.random() * this.canvas.width;
+                    this.ball.position.y = Math.random() * this.canvas.height;
+                    this.ball.velocity.setLength(50);
+                    this.ball.velocity.setAngle(Math.random() * Math.PI * 2);
+                }
+            },
+
+
+            /**
+             * ==================================================================================
+             * @Renderer
+             * ==================================================================================
+             **/
+
+            /**
+             * Draw loop event
+             */
+            draw: function() {
+                /* First clear all drawings */
+                this.clearCanvas();
+
+                /* Just adding in helpers and labels */
+                this.drawHelpers();
 
 
                 /* Draw the circles... */
@@ -140,19 +161,6 @@
 
                 /* ...ball object */
                 this.drawBall(this.ballColor, this.ball.position.x, this.ball.position.y, this.ballRadius);
-
-
-                /* Check object movement, throw object again on stop */
-                if(this.ball.velocity.getLength() <= 0.01) {
-                    this.ball.position.x = Math.random() * this.canvas.width;
-                    this.ball.position.y = Math.random() * this.canvas.height;
-                    this.ball.velocity.setLength(50);
-                    this.ball.velocity.setAngle(Math.random() * Math.PI * 2);
-                }
-
-
-                /* Repeat render function */
-                requestAnimationFrame(this.animateCircle);
             },
 
             /**

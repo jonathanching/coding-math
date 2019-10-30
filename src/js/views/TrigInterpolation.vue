@@ -33,6 +33,9 @@
                 angle: 0,
                 amplitude: 0,
 
+                sineY: 0,
+                cosY: 0,
+
                 leftSide: 0,
                 rightSide: 0,
             };
@@ -55,29 +58,44 @@
                 this.rightSide = this.canvasHalfWidth + (this.canvasHalfWidth * .5);
 
 
-                this.animate();
+                this.render();
             },
 
 
             /**
              * ==================================================================================
-             * @Methods
+             * @Controller
              * ==================================================================================
              **/
 
             /**
-             * Animate
+             * Update loop event
              */
-            animate: function() {
+            update: function() {
                 /**
                  * Calculate Sine and Cosine values
                  * Multiplying the value by the `amplitude` will return a value ranging from `+amplitude` to `-amplitude`
                  * (ex: If `amplitude` is equal to 100, value will range from 100 to -100).
                  */
-                let sineY = this.canvasHalfHeight + Math.sin(this.angle) * this.amplitude,
-                    cosY = this.canvasHalfHeight + Math.cos(this.angle) * this.amplitude;
+                this.sineY = this.canvasHalfHeight + Math.sin(this.angle) * this.amplitude;
+                this.cosY = this.canvasHalfHeight + Math.cos(this.angle) * this.amplitude;
 
 
+                /* Add in speed value to the angle */
+                this.angle += this.speed;
+            },
+
+
+            /**
+             * ==================================================================================
+             * @Renderer
+             * ==================================================================================
+             **/
+
+            /**
+             * Draw loop event
+             */
+            draw: function() {
                 /* First clear all drawings */
                 this.clearCanvas();
 
@@ -86,16 +104,8 @@
 
 
                 /* Draw the balls for Sine and Cosine */
-                this.drawBall("red", this.leftSide, sineY);
-                this.drawBall("blue", this.rightSide, cosY);
-
-
-                /* Add in speed value to the angle */
-                this.angle += this.speed;
-
-
-                /* Repeat render function */
-                requestAnimationFrame(this.animate);
+                this.drawBall("red", this.leftSide, this.sineY);
+                this.drawBall("blue", this.rightSide, this.cosY);
             },
 
             /**

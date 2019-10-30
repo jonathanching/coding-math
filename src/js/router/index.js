@@ -50,6 +50,8 @@ const SierpinskiTriangle = () => import('../views/SierpinskiTriangle.vue');
 const KochSnowflake = () => import('../views/KochSnowflake.vue');
 const VerletIntegration = () => import('../views/VerletIntegration.vue');
 const FractalTree = () => import('../views/FractalTree.vue');
+const Isometric3D = () => import('../views/Isometric3D.vue');
+const Kinematics = () => import('../views/Kinematics.vue');
 
 
 /**
@@ -167,6 +169,14 @@ export default new VueRouter({
         {
             path: '/fractal-tree', component: FractalTree, name: 'FractalTree',
             label: 'Fractal Tree', desc: 'Creating a Tree patterned Fractal',
+        },
+        {
+            path: '/isometric-3d', component: Isometric3D, name: 'Isometric3D',
+            label: 'Isometric Projection', desc: 'Plotting a 3D map using Isometric Projection',
+        },
+        {
+            path: '/kinematics', component: Kinematics, name: 'Kinematics',
+            label: 'Forward & Inverse Kinematics', desc: 'Forward & Inverse Kinematics',
         },
     ]
 });

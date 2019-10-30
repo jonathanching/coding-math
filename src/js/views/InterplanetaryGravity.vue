@@ -71,20 +71,38 @@
                 this.moon.addGravitation(this.earth);
 
 
-                this.animateMovement();
+                this.render();
             },
 
 
             /**
              * ==================================================================================
-             * @Methods
+             * @Controller
              * ==================================================================================
              **/
 
             /**
-             * Animate planet movements
+             * Update loop event
              */
-            animateMovement: function() {
+            update: function() {
+                /**
+                 * Adding of gravity to `particle`s current velocity
+                 * Adding of velocity to `particle`s current position
+                 */
+                this.moon.update();
+            },
+
+
+            /**
+             * ==================================================================================
+             * @Renderer
+             * ==================================================================================
+             **/
+
+            /**
+             * Draw loop event
+             */
+            draw: function() {
                 /* First clear all drawings */
                 this.clearCanvas();
 
@@ -92,20 +110,9 @@
                 this.drawHelpers();
 
 
-                /**
-                 * Adding of gravity to `particle`s current velocity
-                 * Adding of velocity to `particle`s current position
-                 */
-                this.moon.update();
-
-
                 /* Draw earth and moon */
                 this.drawBall("green", this.earth.position.x, this.earth.position.y, 25);
                 this.drawBall("blue", this.moon.position.x, this.moon.position.y, 5);
-
-
-                /* Repeat render function */
-                requestAnimationFrame(this.animateMovement);
             },
 
             /**

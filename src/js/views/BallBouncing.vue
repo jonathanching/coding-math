@@ -68,27 +68,20 @@
                 this.ball.bounce = -0.75;
 
 
-                this.animateBall();
+                this.render();
             },
 
 
             /**
              * ==================================================================================
-             * @Methods
+             * @Controller
              * ==================================================================================
              **/
 
             /**
-             * Animate ball
+             * Update loop event
              */
-            animateBall: function() {
-                /* First clear all drawings */
-                this.clearCanvas();
-
-                /* Just adding in helpers and labels */
-                this.drawHelpers();
-
-
+            update: function() {
                 /**
                  * Adding of gravity to `ball`s current velocity. This increases the downward pulling
                  * force overtime
@@ -98,16 +91,30 @@
                 this.ball.update();
 
 
-                /* Draw the ball */
-                this.drawBall("black", this.ball.position.x, this.ball.position.y);
-
-
                 /* Check wall collision for bouncing effect */
                 this.checkWallCollision();
+            },
 
 
-                /* Repeat render function */
-                requestAnimationFrame(this.animateBall);
+            /**
+             * ==================================================================================
+             * @Renderer
+             * ==================================================================================
+             **/
+
+            /**
+             * Draw loop event
+             */
+            draw: function() {
+                /* First clear all drawings */
+                this.clearCanvas();
+
+                /* Just adding in helpers and labels */
+                this.drawHelpers();
+
+
+                /* Draw the ball */
+                this.drawBall("black", this.ball.position.x, this.ball.position.y);
             },
 
             /**
@@ -120,15 +127,6 @@
                 this.context.arc(x, y, this.radius, 0, Math.PI * 2, false);
                 this.context.fill();
             },
-
-
-            /**
-             * ==================================================================================
-             * @Getter/Setter
-             * ==================================================================================
-             **/
-
-            //
 
 
             /**

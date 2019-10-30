@@ -42,7 +42,6 @@
                 bobMass: 0,
                 size: 0,
                 parts: 0,
-                interval: 0,
 
                 pendulum: null,
             };
@@ -71,7 +70,6 @@
                 this.bobMass = 1;
                 this.size = this.canvasHalfHeight;
                 this.parts = 10;
-                this.interval = 10000;
 
 
                 /* Create `Pendulum` object */
@@ -82,7 +80,7 @@
                                 );
 
 
-                this.animatePendulum();
+                this.render();
             },
 
 
@@ -164,94 +162,6 @@
                     mass: mass,
                     fill: fill
                 };
-            },
-
-
-            /**
-             * Animate pendulum
-             */
-            animatePendulum: function() {
-                /* Push the bob when its less than a certain velocity */
-                this.updateBob();
-
-                /* Update the `Pendulum` points & sticks */
-                this.updatePoints();
-                for(var i = 0; i < this.iteration; i++) {
-                    this.updateSticks();
-                    this.constrainPoints();
-                }
-
-
-
-                /* First clear all drawings */
-                this.clearCanvas();
-
-                /* Just adding in helpers and labels */
-                this.drawHelpers();
-
-
-                /* Draw the `Pendulum` */
-                this.drawPendulum();
-
-
-                /* Repeat render function */
-                requestAnimationFrame(this.animatePendulum);
-            },
-
-
-            /**
-             * Draw the `Pendulum`
-             */
-            drawPendulum: function() {
-                /* Loop through the points */
-                for(var i = 0; i < this.pendulum.points.length; i++) {
-                    let point = this.pendulum.points[i];
-
-                    this.drawCircle(point);
-                }
-
-                /* Loop through the sticks */
-                for(var i = 0; i < this.pendulum.sticks.length; i++) {
-                    let stick = this.pendulum.sticks[i];
-
-                    this.drawLine(stick.start, stick.end);
-                }
-            },
-
-
-            /**
-             * Draw a circle
-             * @param {Object} point
-             */
-            drawCircle: function(point) {
-                this.context.save();
-
-                this.context.beginPath();
-                this.context.arc(point.x, point.y, point.radius, 0, Math.PI * 2);
-
-                if(point.fill) {
-                    this.context.fill();
-                } else {
-                    this.context.stroke();
-                }
-
-                this.context.restore();
-            },
-
-            /**
-             * Draw a line
-             * @param {Object} p1
-             * @param {Object} p2
-             */
-            drawLine: function(p1, p2) {
-                this.context.save();
-
-                this.context.beginPath();
-                this.context.moveTo(p1.x, p1.y);
-                this.context.lineTo(p2.x, p2.y);
-                this.context.stroke();
-
-                this.context.restore();
             },
 
 
@@ -376,6 +286,99 @@
                     sticky.x = dX;
                     sticky.y = dY;
                 }
+            },
+
+            /**
+             * Update loop event
+             */
+            update: function() {
+                /* Push the bob when its less than a certain velocity */
+                this.updateBob();
+
+                /* Update the `Pendulum` points & sticks */
+                this.updatePoints();
+                for(var i = 0; i < this.iteration; i++) {
+                    this.updateSticks();
+                    this.constrainPoints();
+                }
+            },
+
+
+            /**
+             * ==================================================================================
+             * @Renderer
+             * ==================================================================================
+             **/
+
+            /**
+             * Draw loop event
+             */
+            draw: function() {
+                /* First clear all drawings */
+                this.clearCanvas();
+
+                /* Just adding in helpers and labels */
+                this.drawHelpers();
+
+
+                /* Draw the `Pendulum` */
+                this.drawPendulum();
+            },
+
+
+            /**
+             * Draw the `Pendulum`
+             */
+            drawPendulum: function() {
+                /* Loop through the points */
+                for(var i = 0; i < this.pendulum.points.length; i++) {
+                    let point = this.pendulum.points[i];
+
+                    this.drawCircle(point);
+                }
+
+                /* Loop through the sticks */
+                for(var i = 0; i < this.pendulum.sticks.length; i++) {
+                    let stick = this.pendulum.sticks[i];
+
+                    this.drawLine(stick.start, stick.end);
+                }
+            },
+
+
+            /**
+             * Draw a circle
+             * @param {Object} point
+             */
+            drawCircle: function(point) {
+                this.context.save();
+
+                this.context.beginPath();
+                this.context.arc(point.x, point.y, point.radius, 0, Math.PI * 2);
+
+                if(point.fill) {
+                    this.context.fill();
+                } else {
+                    this.context.stroke();
+                }
+
+                this.context.restore();
+            },
+
+            /**
+             * Draw a line
+             * @param {Object} p1
+             * @param {Object} p2
+             */
+            drawLine: function(p1, p2) {
+                this.context.save();
+
+                this.context.beginPath();
+                this.context.moveTo(p1.x, p1.y);
+                this.context.lineTo(p2.x, p2.y);
+                this.context.stroke();
+
+                this.context.restore();
             },
 
 

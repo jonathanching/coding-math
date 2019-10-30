@@ -56,7 +56,8 @@
                 /* Create `Cube` object */
                 this.createCube();
 
-                this.animate();
+
+                this.render();
             },
 
 
@@ -85,73 +86,6 @@
                 this.cube[5] = {  x: +halfSize, y:  +halfSize, z: halfSize };
                 this.cube[6] = {  x: +halfSize, y:  +halfSize, z: -halfSize };
                 this.cube[7] = {  x: -halfSize, y:  +halfSize, z: -halfSize };
-            },
-
-            /**
-             * Animate cube
-             */
-            animate() {
-                /* First clear all drawings */
-                this.clearCanvas();
-
-                /* Just adding in helpers and labels */
-                this.drawHelpers();
-
-
-                /* Update `Cube` points when being projected in 3D */
-                this.projectCube();
-                /* Rotate `Cube` on different axises */
-                this.rotateCube('x', this.rotationSpeed);
-                this.rotateCube('y', this.rotationSpeed);
-                this.rotateCube('z', this.rotationSpeed);
-
-                /* Draw `Cube` */
-                this.drawCube();
-
-
-                /* Repeat render function */
-                requestAnimationFrame(this.animate);
-            },
-
-            /**
-             * Draw a cube
-             */
-            drawCube: function() {
-                this.context.save();
-
-                /* Draw top side... */
-                this.drawLine(0, 1, 2, 3, 0);
-                /* ...bottom side */
-                this.drawLine(4, 5, 6, 7, 4);
-                /* ...connect the top & bottom part */
-                this.drawLine(0, 4);
-                this.drawLine(1, 5);
-                this.drawLine(2, 6);
-                this.drawLine(3, 7);
-
-                this.context.restore();
-            },
-
-
-            /**
-             * Draw a line to the specified coordinates using the `Cube` points
-             * @param {string} color
-             */
-            drawLine: function() {
-                this.context.beginPath();
-
-                /* Get first point */
-                let p = this.cube[arguments[0]];
-                this.context.moveTo(p.sX, p.sY);
-
-                /* Loop through the specified points starting from the 2nd argument */
-                for(var i = 1; i < arguments.length; i++) {
-                    p = this.cube[arguments[i]];
-                    this.context.lineTo(p.sX, p.sY);
-                }
-
-
-                this.context.stroke();
             },
 
 
@@ -221,6 +155,81 @@
                 }
             },
 
+            /**
+             * Update loop event
+             */
+            update: function() {
+                /* Update `Cube` points when being projected in 3D */
+                this.projectCube();
+
+                /* Rotate `Cube` on different axises */
+                this.rotateCube('x', this.rotationSpeed);
+                this.rotateCube('y', this.rotationSpeed);
+                this.rotateCube('z', this.rotationSpeed);
+            },
+
+
+            /**
+             * ==================================================================================
+             * @Renderer
+             * ==================================================================================
+             **/
+
+            /**
+             * Draw loop event
+             */
+            draw: function() {
+                /* First clear all drawings */
+                this.clearCanvas();
+
+                /* Just adding in helpers and labels */
+                this.drawHelpers();
+
+
+                /* Draw `Cube` */
+                this.drawCube();
+            },
+
+            /**
+             * Draw a cube
+             */
+            drawCube: function() {
+                this.context.save();
+
+                /* Draw top side... */
+                this.drawLine(0, 1, 2, 3, 0);
+                /* ...bottom side */
+                this.drawLine(4, 5, 6, 7, 4);
+                /* ...connect the top & bottom part */
+                this.drawLine(0, 4);
+                this.drawLine(1, 5);
+                this.drawLine(2, 6);
+                this.drawLine(3, 7);
+
+                this.context.restore();
+            },
+
+
+            /**
+             * Draw a line to the specified coordinates using the `Cube` points
+             * @param {string} color
+             */
+            drawLine: function() {
+                this.context.beginPath();
+
+                /* Get first point */
+                let p = this.cube[arguments[0]];
+                this.context.moveTo(p.sX, p.sY);
+
+                /* Loop through the specified points starting from the 2nd argument */
+                for(var i = 1; i < arguments.length; i++) {
+                    p = this.cube[arguments[i]];
+                    this.context.lineTo(p.sX, p.sY);
+                }
+
+
+                this.context.stroke();
+            },
 
 
             /**

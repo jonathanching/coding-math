@@ -63,7 +63,7 @@
                 );
 
 
-                this.animateFractal();
+                this.render();
             },
 
 
@@ -96,72 +96,6 @@
 
 
                 return triangle;
-            },
-
-            /**
-             * Animate fractal
-             */
-            animateFractal: function() {
-                /* First clear all drawings */
-                this.clearCanvas();
-
-                /* Just adding in helpers and labels */
-                this.drawHelpers();
-
-
-                /**
-                 * Implementation 1
-                 */
-                this.sierpinski1(this.triangle1[0], this.triangle1[1], this.triangle1[2], this.iteration);
-
-
-                /**
-                 * Implementation 2
-                 */
-                this.sierpinski2(
-                    new Vector2(this.canvasHalfWidth + (this.canvasHalfWidth / 2), this.canvasHalfHeight),
-                    this.size2,
-                    this.iteration
-                );
-
-
-                /* Repeat render function */
-                requestAnimationFrame(this.animateFractal);
-            },
-
-
-            /**
-             * Draw a line
-             * @param {Vector2} p1
-             * @param {Vector2} p2
-             */
-            drawLine: function(p1, p2) {
-                this.context.save();
-
-                this.context.beginPath();
-                this.context.moveTo(p1.x, p1.y);
-                this.context.lineTo(p2.x, p2.y);
-                this.context.stroke();
-
-                this.context.restore();
-            },
-
-            /**
-             * Draw the triangle
-             * @param {int} p1
-             * @param {int} p2
-             * @param {int} p3
-             */
-            drawTriangle: function(p1, p2, p3) {
-                this.context.save();
-
-                this.context.beginPath();
-                this.context.moveTo(p1.x, p1.y);
-                this.context.lineTo(p2.x, p2.y);
-                this.context.lineTo(p3.x, p3.y);
-                this.context.fill();
-
-                this.context.restore();
             },
 
 
@@ -240,6 +174,82 @@
                     this.drawLine(position, points[1]);
                     this.drawLine(position, points[2]);
                 }
+            },
+
+            /**
+             * Update loop event
+             */
+            update: function() {
+
+            },
+
+
+            /**
+             * ==================================================================================
+             * @Renderer
+             * ==================================================================================
+             **/
+
+            /**
+             * Draw loop event
+             */
+            draw: function() {
+                /* First clear all drawings */
+                this.clearCanvas();
+
+                /* Just adding in helpers and labels */
+                this.drawHelpers();
+
+
+                /**
+                 * Implementation 1
+                 */
+                this.sierpinski1(this.triangle1[0], this.triangle1[1], this.triangle1[2], this.iteration);
+
+
+                /**
+                 * Implementation 2
+                 */
+                this.sierpinski2(
+                    new Vector2(this.canvasHalfWidth + (this.canvasHalfWidth / 2), this.canvasHalfHeight),
+                    this.size2,
+                    this.iteration
+                );
+            },
+
+
+            /**
+             * Draw a line
+             * @param {Vector2} p1
+             * @param {Vector2} p2
+             */
+            drawLine: function(p1, p2) {
+                this.context.save();
+
+                this.context.beginPath();
+                this.context.moveTo(p1.x, p1.y);
+                this.context.lineTo(p2.x, p2.y);
+                this.context.stroke();
+
+                this.context.restore();
+            },
+
+            /**
+             * Draw the triangle
+             * @param {int} p1
+             * @param {int} p2
+             * @param {int} p3
+             */
+            drawTriangle: function(p1, p2, p3) {
+                this.context.save();
+
+                this.context.beginPath();
+                this.context.moveTo(p1.x, p1.y);
+                this.context.lineTo(p2.x, p2.y);
+                this.context.lineTo(p3.x, p3.y);
+                this.context.fill();
+
+                this.context.restore();
             },
 
 

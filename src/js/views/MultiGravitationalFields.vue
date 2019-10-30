@@ -114,20 +114,52 @@
                 }
 
 
-                this.animateMovement();
+                this.render();
             },
 
 
             /**
              * ==================================================================================
-             * @Methods
+             * @Controller
              * ==================================================================================
              **/
 
             /**
-             * Animate planet movements
+             * Update loop event
              */
-            animateMovement: function() {
+            update: function() {
+                /* Update and draw all `asteroids` */
+                for(var i = 0; i < this.asteroids.length; i++) {
+                    let asteroid = this.asteroids[i];
+
+                    /**
+                     * Adding of gravity to `particle`s current velocity
+                     * Adding of velocity to `particle`s current position
+                     */
+                    asteroid.update();
+
+
+                    /* Check out of bounds asteroid, redraw if so */
+                    if(this.checkOutofBounds(asteroid)) {
+                        asteroid.position.x = this.asteroidEmitter.position.x;
+                        asteroid.position.y = this.asteroidEmitter.position.y;
+                        asteroid.velocity.setLength(Math.random() * 2 + 5);
+                        asteroid.velocity.setAngle(Math.PI / 4 + (Math.random() * .2 - .1));
+                    }
+                }
+            },
+
+
+            /**
+             * ==================================================================================
+             * @Renderer
+             * ==================================================================================
+             **/
+
+            /**
+             * Draw loop event
+             */
+            draw: function() {
                 /* First clear all drawings */
                 this.clearCanvas();
 
@@ -139,33 +171,14 @@
                 for(var i = 0; i < this.asteroids.length; i++) {
                     let asteroid = this.asteroids[i];
 
-                    /**
-                     * Adding of gravity to `particle`s current velocity
-                     * Adding of velocity to `particle`s current position
-                     */
-                    asteroid.update();
-
                     /* Draw ball */
                     this.drawBall("blue", asteroid.position.x, asteroid.position.y, asteroid.radius);
-
-
-                    /* Check out of bounds asteroid, redraw if so */
-                    if(this.checkOutofBounds(asteroid)) {
-                        asteroid.position.x = this.asteroidEmitter.position.x;
-                        asteroid.position.y = this.asteroidEmitter.position.y;
-                        asteroid.velocity.setLength(Math.random() * 2 + 5);
-                        asteroid.velocity.setAngle(Math.PI / 4 + (Math.random() * .2 - .1));
-                    }
                 }
 
 
                 /* Draw planets */
                 this.drawBall("red", this.planet1.position.x, this.planet1.position.y, this.planet1.radius);
                 this.drawBall("red", this.planet2.position.x, this.planet2.position.y, this.planet2.radius);
-
-
-                /* Repeat render function */
-                requestAnimationFrame(this.animateMovement);
             },
 
             /**

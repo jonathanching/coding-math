@@ -183,4 +183,13 @@ export class Math2 {
 
         return Math.sqrt(dX * dX + dY * dY);
     }
+
+    /**
+     * Get percent of specified value
+     * @param {value}  value
+     * @param {float}  percent
+     */
+    static percentOf(value, percent) {
+        return value * (percent / 100);
+    }
 }

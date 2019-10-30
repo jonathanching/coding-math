@@ -67,20 +67,20 @@
                 }
 
 
-                this.animation();
+                this.start();
             },
 
 
             /**
              * ==================================================================================
-             * @Methods
+             * @Controller
              * ==================================================================================
              **/
 
             /**
-             * Animating all `ball` elements
+             * Start animation
              */
-            animation: function() {
+            start: function() {
                 for(var i = 0; i < this.balls.length; i++) {
                     let ball = this.balls[i],
                         easeFunc = null;
@@ -160,6 +160,13 @@
                         () => { this.animateBall(!direction, ball, easing); }
                     );
             },
+
+
+            /**
+             * ==================================================================================
+             * @Renderer
+             * ==================================================================================
+             **/
 
             /**
              * Draw all element on the canvas

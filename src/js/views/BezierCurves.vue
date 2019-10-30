@@ -62,6 +62,24 @@
                 this.tIncrement = 0.01;
 
 
+                /* Create bezier points */
+                this.createPoints();
+
+
+                this.render();
+            },
+
+            /**
+             * ==================================================================================
+             * @Method
+             * ==================================================================================
+             **/
+
+            /**
+             * Create bezier points
+             */
+            createPoints: function() {
+
                 /**
                  * Create quadratic bezier curve points
                  *
@@ -119,23 +137,39 @@
                             this.canvasHalfWidth + this.canvasHalfWidth / 2,
                             this.canvasHalfHeight + this.canvasHalfHeight / 2
                         );
-
-
-
-                this.animateMovement();
             },
 
 
             /**
              * ==================================================================================
-             * @Methods
+             * @Controller
              * ==================================================================================
              **/
 
             /**
-             * Animate cubic bezier movement
+             * Update loop event
              */
-            animateMovement: function() {
+            update: function() {
+                /**
+                 * Increment `t` value per frame
+                 * Reverse it once it reaches 1 or 0
+                 */
+                this.t += this.tIncrement;
+                if(this.t > 1 || this.t < 0)
+                    this.tIncrement = -this.tIncrement;
+            },
+
+
+            /**
+             * ==================================================================================
+             * @Renderer
+             * ==================================================================================
+             **/
+
+            /**
+             * Draw loop event
+             */
+            draw: function() {
                 /* First clear all drawings */
                 this.clearCanvas();
 
@@ -185,19 +219,6 @@
                 this.drawBall("orange", this.cubicPB1.x, this.cubicPB1.y);
                 this.drawBall("orange", this.cubicPB2.x, this.cubicPB2.y);
                 this.drawBall("red", this.cubicPoint.x, this.cubicPoint.y);
-
-
-                /**
-                 * Increment `t` value per frame
-                 * Reverse it once it reaches 1 or 0
-                 */
-                this.t += this.tIncrement;
-                if(this.t > 1 || this.t < 0)
-                    this.tIncrement = -this.tIncrement;
-
-
-                /* Repeat render function */
-                requestAnimationFrame(this.animateMovement);
             },
 
             /**

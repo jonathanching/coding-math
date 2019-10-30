@@ -67,20 +67,51 @@
                 }
 
 
-                this.animateParticles();
+                this.render();
             },
 
 
             /**
              * ==================================================================================
-             * @Methods
+             * @Controller
              * ==================================================================================
              **/
 
             /**
-             * Animate particle
+             * Update loop event
              */
-            animateParticles: function() {
+            update: function() {
+                /* Loop through all created `particle` */
+                for(var i = 0; i < this.particles.length; i++) {
+                    let p = this.particles[i];
+
+                    /**
+                     * Adding of velocity to `particle`s current position
+                     */
+                    p.update();
+
+                    /* Check if out of bounds */
+                    if(this.checkOutofBounds(p)) {
+                        /* Reset the particle's position, speed and angle */
+                        p.position.x = this.canvasHalfWidth;
+                        p.position.y = this.canvasHalfHeight;
+                        p.velocity.setLength(Math.random() * 4 + 1);
+                        p.velocity.setAngle(Math.random() * Math.PI * 2);
+                    }
+                }
+            },
+
+
+            /**
+             * ==================================================================================
+             * @Renderer
+             * ==================================================================================
+             **/
+
+            /**
+             * Draw loop event
+             */
+            draw: function() {
                 /* First clear all drawings */
                 this.clearCanvas();
 
@@ -92,30 +123,9 @@
                 for(var i = 0; i < this.particles.length; i++) {
                     let p = this.particles[i];
 
-                    /**
-                     * Adding of velocity to `particle`s current position
-                     */
-                    p.update();
-
-
                     /* Draw the ball */
                     this.drawBall(p.position.x, p.position.y);
-
-
-                    /* Check if out of bounds */
-                    if(this.checkOutofBounds(p)) {
-                        /* Reset the particle's position, speed and angle */
-                        p.position.x = this.canvasHalfWidth;
-                        p.position.y = this.canvasHalfHeight;
-                        p.velocity.setLength(Math.random() * 4 + 1);
-                        p.velocity.setAngle(Math.random() * Math.PI * 2);
-                    }
                 }
-
-
-
-                /* Repeat render function */
-                requestAnimationFrame(this.animateParticles);
             },
 
             /**

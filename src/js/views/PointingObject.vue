@@ -46,20 +46,34 @@
                 this.angle = 0;
 
 
-                this.animateArrow();
+                this.render();
             },
 
 
             /**
              * ==================================================================================
-             * @Methods
+             * @Controller
              * ==================================================================================
              **/
 
             /**
-             * Animate arrow
+             * Update loop event
              */
-            animateArrow: function() {
+            update: function() {
+
+            },
+
+
+            /**
+             * ==================================================================================
+             * @Renderer
+             * ==================================================================================
+             **/
+
+            /**
+             * Draw loop event
+             */
+            draw: function() {
                 /**
                  * Calculate `x` and `y` values
                  */
@@ -93,10 +107,6 @@
 
                 /* Restore default canvas state */
                 this.context.restore();
-
-
-                /* Repeat render function */
-                requestAnimationFrame(this.animateArrow);
             },
 
             /**
