@@ -57,6 +57,7 @@ const DragInverseKinematics = () => import('../views/DragInverseKinematics.vue')
 const ReachInverseKinematics = () => import('../views/ReachInverseKinematics.vue');
 const WeightedRandom = () => import('../views/WeightedRandom.vue');
 const IFSFractals = () => import('../views/IFSFractals.vue');
+const RandCirclePacking = () => import('../views/RandCirclePacking.vue');
 
 
 /**
@@ -202,6 +203,10 @@ export default new VueRouter({
         {
             path: '/ifs-fractals', component: IFSFractals, name: 'IFSFractals',
             label: 'IFS Fractals', desc: 'Drawing IFS Fractals',
+        },
+        {
+            path: '/random-circle-packing', component: RandCirclePacking, name: 'RandCirclePacking',
+            label: 'Random Circle Packing', desc: 'Packing circles on a given space',
         },
     ]
 });

@@ -19,6 +19,8 @@ export default {
 
             canvas: null,
             context: null,
+
+            stop: false,
         };
     },
 
@@ -86,7 +88,8 @@ export default {
             }
 
             /* Repeat render function */
-            requestAnimationFrame(this.render);
+            if(!this.stop)
+                requestAnimationFrame(this.render);
         },
 
         /**
