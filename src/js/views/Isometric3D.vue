@@ -111,7 +111,7 @@
                             dX = tileHalfSize - x,
                             dY = tileHalfSize - y,
                             dist = Math.sqrt(dX * dX + dY * dY),
-                            /* Animate the `z` value base on the distance value & the inc. value */
+                            /* Animate the `z` value base on the distance on the center & the inc. value */
                             z = Math.sin(dist * Math.sin(this.area)) * 2 + 2;
 
                         this.drawBlock(x, y, z);

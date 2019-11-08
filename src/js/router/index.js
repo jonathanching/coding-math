@@ -51,7 +51,12 @@ const KochSnowflake = () => import('../views/KochSnowflake.vue');
 const VerletIntegration = () => import('../views/VerletIntegration.vue');
 const FractalTree = () => import('../views/FractalTree.vue');
 const Isometric3D = () => import('../views/Isometric3D.vue');
-const Kinematics = () => import('../views/Kinematics.vue');
+const ForwardKinematics = () => import('../views/ForwardKinematics.vue');
+const WalkCycle = () => import('../views/WalkCycle.vue');
+const DragInverseKinematics = () => import('../views/DragInverseKinematics.vue');
+const ReachInverseKinematics = () => import('../views/ReachInverseKinematics.vue');
+const WeightedRandom = () => import('../views/WeightedRandom.vue');
+const IFSFractals = () => import('../views/IFSFractals.vue');
 
 
 /**
@@ -175,8 +180,28 @@ export default new VueRouter({
             label: 'Isometric Projection', desc: 'Plotting a 3D map using Isometric Projection',
         },
         {
-            path: '/kinematics', component: Kinematics, name: 'Kinematics',
-            label: 'Forward & Inverse Kinematics', desc: 'Forward & Inverse Kinematics',
+            path: '/forward-kinematics', component: ForwardKinematics, name: 'ForwardKinematics',
+            label: 'Forward Kinematics', desc: 'Simulating Forward Kinematics',
+        },
+        {
+            path: '/walk-cycle', component: WalkCycle, name: 'WalkCycle',
+            label: 'Walk Cycle', desc: 'Walk cycle using Forward Kinematics',
+        },
+        {
+            path: '/drag-inverse-kinematics', component: DragInverseKinematics, name: 'DragInverseKinematics',
+            label: 'Drag Inverse Kinematics', desc: 'Simulate dragging w/ Inverse Kinematics',
+        },
+        {
+            path: '/reach-inverse-kinematics', component: ReachInverseKinematics, name: 'ReachInverseKinematics',
+            label: 'Reach Inverse Kinematics', desc: 'Simulate reaching w/ Inverse Kinematics',
+        },
+        {
+            path: '/weighted-random', component: WeightedRandom, name: 'WeightedRandom',
+            label: 'Weighted Random', desc: 'Algorithm for flexible randomization',
+        },
+        {
+            path: '/ifs-fractals', component: IFSFractals, name: 'IFSFractals',
+            label: 'IFS Fractals', desc: 'Drawing IFS Fractals',
         },
     ]
 });

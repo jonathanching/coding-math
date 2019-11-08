@@ -170,10 +170,20 @@
 
                 /**
                  * Check collision by comparing IF:
-                 * - The distance of the circles is less than the total radius
-                 * of both circles
+                 * - The square of the sum of the radii is larger than the distance between the circles
+                 * OR
+                 * - The square of the distance is greater than the sum of the radii
                  */
-                if(this.circle.distanceTo(this.mouse) <= this.circleRadius + this.mouseRadius) {
+
+                let dx = this.mouse.position.x - this.circle.position.x,
+                    dy = this.mouse.position.y - this.circle.position.y;
+
+                if(
+                    /* Distance less than... */
+                    (dx * dx) + (dy * dy) <
+                    /* ...square sum of the radii */
+                    (this.circleRadius + this.mouseRadius) * (this.circleRadius + this.mouseRadius)
+                ) {
                     this.mouseColor = "rgba(255, 177, 177, 0.5)";
                     this.circleColor = "rgba(255, 150, 150, 0.5)";
                 } else {

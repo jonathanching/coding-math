@@ -63,7 +63,7 @@
                 );
 
 
-                this.render();
+                this.draw();
             },
 
 

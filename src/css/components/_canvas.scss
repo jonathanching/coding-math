@@ -11,3 +11,13 @@ canvas {
     top: 0;
     left: 0;
 }
+
+#counter {
+	font-size: 1.15em;
+	position: absolute;
+	bottom: 10%;
+	left: 0;
+	width: 100%;
+	text-align: center;
+	z-index: 9999;
+}
